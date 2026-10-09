@@ -13,10 +13,10 @@ you in a session like the one that produced this repository.
 | 1. Idea and research | Done |
 | 2. Product design | Done |
 | 3. Engine, with automated tests | Done: 36 tests pass |
-| 4. Desktop app and interface | Written. Compiles and runs on Linux. Windows and macOS builds not yet attempted |
-| 5. Build automation | Written, not yet run |
-| 6. First real builds on Windows and macOS | **Next step, needs your GitHub account** |
-| 7. Testing on real machines | Needs you (30 to 60 minutes) |
+| 4. Desktop app and interface | Done: builds on Windows, macOS and Linux |
+| 5. Build automation | Done: the CI workflow runs green |
+| 6. First real builds on Windows and macOS | Done on 9 October 2026: all three systems and both store variants compile |
+| 7. Testing on real machines | **Next step, needs you (30 to 60 minutes)** |
 | 8. Website and privacy policy | Written, to be switched on in GitHub |
 | 9. Microsoft Store | Needs your account |
 | 10. Mac App Store | Needs your account and 99 USD a year |
@@ -30,15 +30,18 @@ Checked on the machine where the code was written (Linux):
 - The interface walkthrough passes: every screen, five languages, light and dark, with no script errors.
 - The desktop app compiles in its three variants (normal, Microsoft Store, Mac App Store) and, in a live run on a virtual display, the timetable started a session by itself and the real pointer wiggled and came back.
 
-Not checked, because it needs Windows or macOS:
+Checked on GitHub's Windows and macOS machines (9 October 2026):
 
-- The two small files that talk to the real mouse on Windows (`src-tauri/src/input/windows.rs`) and macOS (`macos.rs`) have never been compiled. They were written against the libraries' source code, but expect that the first build may need a fix or two.
-- The tray, hotkey, compact bar and drawing overlay have not been seen on Windows or macOS.
-- The store packaging scripts have never run.
+- The app compiles and packages into installers on Windows, macOS (Intel and Apple Silicon) and Linux, on the first attempt.
+- The Microsoft Store and Mac App Store variants compile.
 
-An independent review by a second agent, which read the Windows and macOS code against the libraries' sources, found no compile errors there and twelve other problems; all were fixed, and three got a test of their own.
+Not checked yet, because it needs a person at a real Windows PC or Mac:
 
-Stage 6 exists to close that gap.
+- Whether the app behaves correctly when run: the pointer movement, clicks, tray, hotkey, compact bar and drawing overlay have not been seen on Windows or macOS.
+- The store packaging scripts (the `.msix` and the Mac `.pkg`) have never run.
+
+Stage 7 exists to close that gap.
+
 
 ---
 
