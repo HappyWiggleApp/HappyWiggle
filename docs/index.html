@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoftMouseWiggler: free mouse wiggler and auto clicker</title>
+<meta name="description" content="Free, open-source mouse wiggler and auto clicker for Windows and Mac. Keeps your computer awake. No ads, no tracking, no network access.">
+<link rel="icon" href="icon.svg">
+<style>
+  :root { --bg:#f2f5f3; --ink:#14211d; --muted:#5a6964; --line:#d9e1dd; --brand:#0e7c66; --deep:#0f4136; --mint:#eafaf3; --surface:#fff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#101715; --ink:#e8efec; --muted:#9aaba5; --line:#2a3632; --brand:#35c296; --surface:#18211e; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  a { color:var(--brand); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  header b { display:flex; align-items:center; gap:10px; font-size:18px; }
+  nav a { margin-left:18px; text-decoration:none; }
+  .hero { background:var(--deep); color:var(--mint); border-radius:22px; padding:44px 36px 36px; margin-top:6px; position:relative; overflow:hidden; }
+  .hero h1 { font-size: clamp(32px, 6vw, 54px); line-height:1.05; letter-spacing:-0.03em; margin:0 0 14px; max-width:14ch; }
+  .hero p { max-width:52ch; margin:0 0 26px; color:#a5d3c3; }
+  .hero svg { position:absolute; right:-10px; top:18px; width:46%; max-width:420px; opacity:.9; }
+  .dl { display:flex; flex-wrap:wrap; gap:12px; }
+  .dl a { background:var(--mint); color:var(--deep); text-decoration:none; font-weight:650; padding:12px 18px; border-radius:11px; }
+  .dl a.ghost { background:none; color:var(--mint); border:1px solid #4d8a79; }
+  .hero small { display:block; margin-top:14px; color:#a5d3c3; }
+  h2 { font-size:26px; letter-spacing:-0.02em; margin:54px 0 8px; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+  .two div { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .two h3 { margin:0 0 6px; font-size:19px; }
+  .two p { margin:0; color:var(--muted); }
+  dl.facts { display:grid; grid-template-columns: 190px 1fr; gap:0; margin:16px 0 0; border-top:1px solid var(--line); }
+  dl.facts dt, dl.facts dd { padding:12px 0; border-bottom:1px solid var(--line); margin:0; }
+  dl.facts dt { font-weight:650; }
+  dl.facts dd { color:var(--muted); }
+  .note { color:var(--muted); max-width:62ch; }
+  footer { margin:60px 0 40px; color:var(--muted); font-size:15px; display:flex; flex-wrap:wrap; gap:8px 20px; }
+  @media (max-width:640px) { .two { grid-template-columns:1fr; } dl.facts { grid-template-columns:1fr; } dl.facts dt { border-bottom:0; padding-bottom:0; } .hero { padding:32px 22px 26px; } .hero svg { display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <b><img src="icon.svg" width="30" height="30" alt="">SoftMouseWiggler</b>
+    <nav><a href="privacy.html">Privacy</a><a href="https://github.com/YOUR-GITHUB-NAME/softmousewiggler">Source code</a></nav>
+  </header>
+
+  <section class="hero">
+    <svg viewBox="0 0 240 120" aria-hidden="true"><path d="M10 80 C 45 10, 80 110, 120 60 S 190 14, 230 70" fill="none" stroke="#a5d3c3" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/><path transform="translate(118 56) scale(1.5)" d="M0 0 L0 17 L4.600 12.800 L7.500 19.500 L10.400 18.200 L7.600 11.700 L13.500 11.700 Z" fill="#fff"/></svg>
+    <h1>Keeps your computer awake. Then gets out of your way.</h1>
+    <p>A mouse wiggler and auto clicker for Windows and Mac. Free, open source, and it never goes online.</p>
+    <div class="dl">
+      <a href="https://github.com/YOUR-GITHUB-NAME/softmousewiggler/releases/latest">Download for Windows</a>
+      <a href="https://github.com/YOUR-GITHUB-NAME/softmousewiggler/releases/latest">Download for Mac</a>
+      <a class="ghost" href="https://github.com/YOUR-GITHUB-NAME/softmousewiggler">Read the code</a>
+    </div>
+    <small>Windows 10 or later. macOS 11 or later, Intel and Apple Silicon.</small>
+  </section>
+
+  <h2>Two ways to stay active</h2>
+  <div class="two">
+    <div><h3>Wiggle only</h3><p>Moves the mouse in a short, natural drift and brings it back where it was. Or pick the invisible one-pixel nudge. It never clicks.</p></div>
+    <div><h3>Click areas</h3><p>Choose an exact spot, or draw an area and let it click a random point inside, at random intervals. Up to five targets.</p></div>
+  </div>
+
+  <h2>What you get</h2>
+  <dl class="facts">
+    <dt>Steps aside</dt><dd>Touch the mouse and it waits. It carries on a few seconds after you stop.</dd>
+    <dt>Stops itself</dt><dd>After a number of clicks, after a number of minutes, or at a time of day.</dd>
+    <dt>Timetable</dt><dd>Pick days and hours once. Start, stop and lunch break drift by a few minutes each day.</dd>
+    <dt>One hotkey</dt><dd>F8 starts and stops it from anywhere. You can change the key.</dd>
+    <dt>Compact bar</dt><dd>A slim bar that stays on top and shows the time left and when it will stop.</dd>
+    <dt>Careful clicks</dt><dd>It glides to the target, clicks only if it really got there, and puts the pointer back.</dd>
+    <dt>Five languages</dt><dd>English, French, German, Spanish and Portuguese, in light or dark.</dd>
+  </dl>
+
+  <h2>Why open source matters here</h2>
+  <p class="note">An app that moves your mouse deserves scrutiny. Every line of SoftMouseWiggler is public, the installers are built by a public script from that code, and the app contains no network code at all. It cannot read your screen, your files or your messages, and it has nothing to send them with.</p>
+
+  <h2>Use it responsibly</h2>
+  <p class="note">SoftMouseWiggler is a tool you control. Check your employer's and IT policies before using automation on a work or managed device, and do not use it to misrepresent whether you are working.</p>
+
+  <footer>
+    <span>MIT licence</span><a href="privacy.html">Privacy policy</a>
+    <a href="https://github.com/YOUR-GITHUB-NAME/softmousewiggler/issues">Report a problem</a>
+    <span>Not affiliated with Microsoft, Apple, Slack or any other company.</span>
+  </footer>
+</div>
+</body>
+</html>

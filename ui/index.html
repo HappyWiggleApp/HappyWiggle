@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoftMouseWiggler</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="preview-note" hidden>
+  <span data-i18n="preview.note"></span>
+  <button type="button" id="preview-touch" class="link" data-i18n="preview.touch"></button>
+</div>
+
+<header class="top">
+  <div class="brand"><img src="icon.svg" alt="" width="22" height="22"><span>SoftMouseWiggler</span></div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="run" aria-selected="true" data-i18n="tab.run"></button>
+    <button role="tab" data-tab="schedule" aria-selected="false" data-i18n="tab.schedule"></button>
+    <button role="tab" data-tab="settings" aria-selected="false" data-i18n="tab.settings"></button>
+  </nav>
+</header>
+
+<main>
+<!-- ============================== RUN ============================== -->
+<section id="tab-run" class="tab">
+  <div class="stage" id="stage" data-phase="idle">
+    <p class="state" id="st-state"></p>
+    <div class="scene">
+      <p class="clock" id="st-clock"></p>
+      <svg class="trail" viewBox="0 0 240 56" aria-hidden="true">
+        <path id="trail-path" class="trail-line" d="M10 40 C 45 4, 80 54, 120 30 S 190 6, 230 34"/>
+        <g id="trail-pointer"><path d="M0 0 L0 17 L4.600 12.800 L7.500 19.500 L10.400 18.200 L7.600 11.700 L13.500 11.700 Z"/></g>
+      </svg>
+    </div>
+    <p class="sub" id="st-sub"></p>
+    <dl class="stats" id="st-stats">
+      <div><dt id="st-count-label"></dt><dd id="st-count">0</dd></div>
+      <div><dt data-i18n="run.next"></dt><dd id="st-next"></dd></div>
+      <div><dt data-i18n="run.elapsed"></dt><dd id="st-elapsed"></dd></div>
+    </dl>
+  </div>
+
+  <div class="notice" id="notice" hidden role="alert">
+    <p id="notice-text"></p>
+    <button type="button" class="link" id="notice-close" data-i18n="common.ok"></button>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="primary" id="btn-start"><span data-i18n="run.start"></span><kbd id="hotkey-hint"></kbd></button>
+    <button type="button" class="secondary" id="btn-pause" hidden></button>
+    <button type="button" class="danger" id="btn-stop" hidden data-i18n="run.stop"></button>
+    <button type="button" class="icon" id="btn-compact" hidden data-i18n-title="run.shrink" aria-label="shrink">
+      <svg viewBox="0 0 20 20" width="18" height="18"><path d="M3 12h14v5H3z" fill="currentColor"/><path d="M10 3v6m0 0L7 6.500M10 9l3-2.500" fill="none" stroke="currentColor" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <fieldset class="group" id="setup">
+    <div class="segmented" role="radiogroup" data-i18n-aria="run.mode">
+      <button type="button" role="radio" data-mode="wiggle"><strong data-i18n="mode.wiggle"></strong><small data-i18n="mode.wiggle.hint"></small></button>
+      <button type="button" role="radio" data-mode="click"><strong data-i18n="mode.click"></strong><small data-i18n="mode.click.hint"></small></button>
+    </div>
+
+    <!-- wiggle options -->
+    <div id="opts-wiggle" class="rows">
+      <label class="row"><span data-i18n="wiggle.style"></span>
+        <select id="f-wiggle-style">
+          <option value="natural" data-i18n="wiggle.natural"></option>
+          <option value="subtle" data-i18n="wiggle.subtle"></option>
+        </select>
+      </label>
+      <div class="row"><span data-i18n="common.every"></span>
+        <span class="range"><input type="number" id="f-wiggle-min" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.to"></i><input type="number" id="f-wiggle-max" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.seconds"></i></span>
+      </div>
+      <label class="row" id="row-distance"><span data-i18n="wiggle.distance"></span>
+        <span class="range"><input type="range" id="f-wiggle-distance" min="10" max="300" step="10"><output id="o-wiggle-distance"></output></span>
+      </label>
+    </div>
+
+    <!-- click options -->
+    <div id="opts-click" class="rows" hidden>
+      <div class="targets">
+        <p class="hint" id="targets-empty" data-i18n="click.empty"></p>
+        <ul id="targets"></ul>
+        <div class="target-actions">
+          <button type="button" class="secondary" id="btn-draw" data-i18n="click.draw"></button>
+          <button type="button" class="secondary" id="btn-capture" data-i18n="click.capture"></button>
+        </div>
+      </div>
+      <div class="row"><span data-i18n="common.every"></span>
+        <span class="range"><input type="number" id="f-click-min" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.to"></i><input type="number" id="f-click-max" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.seconds"></i></span>
+      </div>
+      <label class="row" id="row-order"><span data-i18n="click.order"></span>
+        <select id="f-order">
+          <option value="random" data-i18n="click.order.random"></option>
+          <option value="sequence" data-i18n="click.order.sequence"></option>
+        </select>
+      </label>
+      <label class="row"><span data-i18n="click.button"></span>
+        <select id="f-button">
+          <option value="left" data-i18n="click.left"></option>
+          <option value="right" data-i18n="click.right"></option>
+        </select>
+      </label>
+      <label class="row switch"><span><b data-i18n="click.glide"></b><small data-i18n="click.glide.hint"></small></span><input type="checkbox" id="f-smooth"></label>
+      <label class="row switch"><span><b data-i18n="click.return"></b><small data-i18n="click.return.hint"></small></span><input type="checkbox" id="f-return"></label>
+    </div>
+
+    <h2 data-i18n="stop.title"></h2>
+    <div class="rows">
+      <div class="row"><span data-i18n="stop.when"></span>
+        <span class="range">
+          <select id="f-stop-kind">
+            <option value="never" data-i18n="stop.never"></option>
+            <option value="afterActions" id="opt-after-actions"></option>
+            <option value="afterMinutes" data-i18n="stop.minutes"></option>
+            <option value="atTime" data-i18n="stop.time"></option>
+          </select>
+          <input type="number" id="f-stop-actions" min="1" max="1000000" hidden>
+          <input type="number" id="f-stop-minutes" min="1" max="1440" hidden>
+          <input type="time" id="f-stop-time" hidden>
+        </span>
+      </div>
+    </div>
+
+    <h2 data-i18n="behave.title"></h2>
+    <div class="rows">
+      <label class="row switch"><span><b data-i18n="behave.pause"></b><small data-i18n="behave.pause.hint"></small></span><input type="checkbox" id="f-pause-user"></label>
+      <div class="row" id="row-resume"><span data-i18n="behave.resume"></span>
+        <span class="range"><input type="number" id="f-resume" min="1" max="600"><i data-i18n="common.seconds"></i></span>
+      </div>
+      <label class="row switch"><span><b data-i18n="behave.awake"></b><small data-i18n="behave.awake.hint"></small></span><input type="checkbox" id="f-awake"></label>
+    </div>
+  </fieldset>
+</section>
+
+<!-- ============================== SCHEDULE ============================== -->
+<section id="tab-schedule" class="tab" hidden>
+  <div id="sched-empty" class="empty" hidden>
+    <h1 data-i18n="sched.empty.title"></h1>
+    <p data-i18n="sched.empty.text"></p>
+    <div class="preset">
+      <div>
+        <strong data-i18n="sched.preset.title"></strong>
+        <p data-i18n="sched.preset.text"></p>
+      </div>
+      <button type="button" class="primary small" id="btn-preset" data-i18n="sched.preset.use"></button>
+    </div>
+  </div>
+
+  <div id="sched-body" hidden>
+    <div class="sched-head">
+      <label class="switch big"><input type="checkbox" id="f-sched-on"><span data-i18n="sched.switch"></span></label>
+      <button type="button" class="secondary small" id="btn-skip"></button>
+    </div>
+    <p class="sched-status" id="sched-status"></p>
+
+    <div class="week" id="week" aria-hidden="true"></div>
+    <p class="legend"><span class="key plan"></span><span data-i18n="sched.legend.plan"></span><span class="key drift"></span><span data-i18n="sched.legend.drift"></span></p>
+
+    <div id="blocks"></div>
+    <button type="button" class="secondary" id="btn-add-block" data-i18n="sched.add"></button>
+
+    <h2 data-i18n="hist.title"></h2>
+    <p class="hint" id="hist-empty" data-i18n="hist.empty"></p>
+    <ul class="history" id="history"></ul>
+    <button type="button" class="link" id="btn-clear-history" data-i18n="hist.clear" hidden></button>
+
+    <h2 data-i18n="sched.know.title"></h2>
+    <ul class="plain">
+      <li data-i18n="sched.know.1"></li>
+      <li data-i18n="sched.know.2"></li>
+      <li data-i18n="sched.know.3"></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== SETTINGS ============================== -->
+<section id="tab-settings" class="tab" hidden>
+  <div class="rows">
+    <div class="row"><span><b data-i18n="set.hotkey"></b><small data-i18n="set.hotkey.hint"></small></span>
+      <button type="button" class="keycap" id="btn-hotkey"></button>
+    </div>
+    <label class="row"><span data-i18n="set.theme"></span>
+      <select id="f-theme">
+        <option value="system" data-i18n="set.theme.system"></option>
+        <option value="light" data-i18n="set.theme.light"></option>
+        <option value="dark" data-i18n="set.theme.dark"></option>
+      </select>
+    </label>
+    <label class="row"><span data-i18n="set.language"></span>
+      <select id="f-language">
+        <option value="auto" data-i18n="set.language.auto"></option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+      </select>
+    </label>
+    <label class="row switch"><span><b data-i18n="set.compact"></b><small data-i18n="set.compact.hint"></small></span><input type="checkbox" id="f-compact"></label>
+    <label class="row switch" id="row-autostart"><span><b data-i18n="set.autostart"></b><small data-i18n="set.autostart.hint"></small></span><input type="checkbox" id="f-autostart"></label>
+    <label class="row switch"><span><b data-i18n="set.hidden"></b><small data-i18n="set.hidden.hint"></small></span><input type="checkbox" id="f-hidden"></label>
+    <div class="row" id="row-permission" hidden><span><b data-i18n="set.permission"></b><small id="permission-state"></small></span>
+      <button type="button" class="secondary small" id="btn-permission" data-i18n="set.permission.ask"></button>
+    </div>
+  </div>
+
+  <h2 data-i18n="about.title"></h2>
+  <p class="about" data-i18n="about.text"></p>
+  <p class="about" data-i18n="about.responsible"></p>
+  <p class="links">
+    <button type="button" class="link" data-link="source" data-i18n="about.source" hidden></button>
+    <button type="button" class="link" data-link="issues" data-i18n="about.issues" hidden></button>
+    <button type="button" class="link" data-link="privacy" data-i18n="about.privacy" hidden></button>
+    <button type="button" class="link" data-link="donate" data-i18n="about.donate" hidden></button>
+  </p>
+  <p class="version" id="version"></p>
+  <button type="button" class="secondary small" id="btn-quit" data-i18n="set.quit"></button>
+</section>
+</main>
+
+<!-- pointer capture countdown -->
+<div class="sheet" id="capture" hidden>
+  <div class="sheet-box">
+    <p id="capture-text"></p>
+    <p class="count" id="capture-count"></p>
+    <button type="button" class="secondary" id="capture-cancel" data-i18n="common.cancel"></button>
+  </div>
+</div>
+
+<!-- choose what to capture -->
+<div class="sheet" id="capture-choice" hidden>
+  <div class="sheet-box">
+    <p data-i18n="capture.choice"></p>
+    <button type="button" class="primary small" id="capture-spot" data-i18n="capture.spot"></button>
+    <button type="button" class="secondary" id="capture-area" data-i18n="capture.area"></button>
+    <button type="button" class="link" id="capture-choice-cancel" data-i18n="common.cancel"></button>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="draw.js"></script>
+<script src="api.js"></script>
+<script src="bar.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SoftMouseWiggler",
+  "version": "0.1.0",
+  "identifier": "app.softmousewiggler",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "SoftMouseWiggler",
+        "url": "index.html",
+        "width": 440,
+        "height": 700,
+        "minWidth": 400,
+        "minHeight": 560,
+        "resizable": true,
+        "maximizable": false,
+        "visible": false,
+        "center": true
+      },
+      {
+        "label": "bar",
+        "title": "SoftMouseWiggler",
+        "url": "bar.html",
+        "width": 400,
+        "height": 64,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "resizable": false,
+        "maximizable": false,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "SoftMouseWiggler contributors",
+    "category": "Utility",
+    "shortDescription": "Free mouse wiggler and auto clicker",
+    "longDescription": "Keeps your computer awake and your session active by gently moving the mouse or clicking a safe area at random intervals. Free, open source, no ads, no tracking.",
+    "copyright": "MIT License",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      }
+    }
+  }
+}
