@@ -139,7 +139,7 @@ Report anything odd to Claude with a description or a screenshot.
 Both stores require a public privacy policy address.
 
 1. In the repository: **Settings > Pages > Build and deployment**: Source "Deploy from a branch", branch `main`, folder `/docs`. Save.
-2. After a minute the site is live at `https://happywiggleapp.github.io/happywiggle/` and the policy at `.../privacy.html`.
+2. After a minute the site is live at `https://happywiggleapp.github.io/HappyWiggle/` and the policy at `.../privacy.html`.
 3. Optional: a custom domain costs about 10 to 15 EUR a year.
 
 Donations: create a page on GitHub Sponsors, Ko-fi or Buy Me a Coffee and put its address in `src-tauri/links.json` under `donate`. The button then appears in Settings on Windows and in the direct-download Mac build.
