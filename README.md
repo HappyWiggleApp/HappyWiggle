@@ -20,6 +20,8 @@ It keeps your computer awake and your session active in one of two ways:
 | Keeps awake | Screen on and sleep off while a session runs, released as soon as it ends. |
 | Tray | Lives in the tray or menu bar; start, pause and stop from there. |
 | Careful clicks | Glides to the target like a hand, clicks only if it really arrived, puts the pointer back. |
+| Simple first | Three choices to get going; exact timing and movement style sit behind "Advanced options". |
+| Starts with the computer | Optional, in every build: direct download, Microsoft Store and Mac App Store. |
 | Five languages | English, French, German, Spanish, Portuguese. Light and dark. |
 
 ## Use it responsibly

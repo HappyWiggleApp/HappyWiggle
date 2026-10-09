@@ -3474,6 +3474,7 @@ dependencies = [
  "keepawake",
  "serde",
  "serde_json",
+ "smappservice-rs",
  "tauri",
  "tauri-build",
  "tauri-plugin-autostart",

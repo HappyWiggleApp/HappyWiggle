@@ -107,6 +107,8 @@ pub struct Settings {
     pub autostart: bool,
     pub start_hidden: bool,
     pub onboarded: bool,
+    /// Show the detailed options (exact timing, movement style, behaviour).
+    pub advanced: bool,
 
     pub schedule: Schedule,
 }
@@ -119,7 +121,7 @@ impl Default for Settings {
             area_order: AreaOrder::Random,
             button: Button::Left,
             click_min_s: 20.0,
-            click_max_s: 60.0,
+            click_max_s: 50.0,
             smooth_move: true,
             return_cursor: true,
             wiggle_style: WiggleStyle::Natural,
@@ -137,6 +139,7 @@ impl Default for Settings {
             autostart: false,
             start_hidden: false,
             onboarded: false,
+            advanced: false,
             schedule: Schedule::default(),
         }
     }

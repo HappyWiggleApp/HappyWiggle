@@ -69,6 +69,7 @@ Where SoftMouseWiggler goes further:
 - Hotkey can be changed.
 - Two ways to choose a target: draw on a dimmed screen, or capture the pointer position after a countdown. The second works on any monitor layout.
 - Five languages from day one.
+- A simple view by default (mode, how often, when to stop), with exact timing, movement style and behaviour behind "Advanced options".
 
 Left out of version 0.1, as ideas for later: a plain unbranded icon, battery-aware pausing, profiles, an automatic update check for the direct-download build.
 
@@ -164,7 +165,7 @@ Cost: free for individuals since September 2025.
 Things to know:
 
 - The Store package relies on the WebView2 component that ships with Windows 11 and with up-to-date Windows 10. On an old, never-updated Windows 10 the app shows an error asking for it.
-- "Open when the computer starts" is hidden in the Store build. Windows offers the same switch under Settings > Apps > Startup. Started that way, the window shows unless "Open quietly in the tray" is on.
+- In the Store build, "Open when the computer starts" is a button that opens Windows' own startup page (Settings > Apps > Startup), because Windows keeps that switch for Store apps. Started that way, the window shows unless "Open quietly in the tray" is on.
 - Donations: Microsoft's policy allows voluntary donations in non-game apps through a secure third-party service. Whether a plain link to a donation page satisfies the wording is an interpretation, not something Microsoft has confirmed. If certification objects, set `donate` to empty for the Store build and keep the link on the website.
 
 ## Stage 10. Mac App Store (you: 2 to 3 hours the first time, then 1 to 3 days of waiting)
@@ -188,7 +189,8 @@ Mac App Store specifics already handled in the code:
 
 - The build is sandboxed and requests no network or file access.
 - It uses the event-posting permission that Apple's engineers describe as sandbox-compatible, not the Accessibility API.
-- The external donation link and the launch-at-login switch are removed in this build. Apple generally wants tips to go through in-app purchase; adding a "tip jar" purchase is a possible later step.
+- The external donation link is removed in this build. Apple generally wants tips to go through in-app purchase; adding a "tip jar" purchase is a possible later step.
+- "Open when the computer starts" uses the system login-item service, the only route a sandboxed app is allowed. It needs macOS 13 or later, so the Store build requires macOS 13; the direct-download build still runs on macOS 11. This code has not been compiled yet.
 
 After granting the permission, macOS may only honour it once the app has been quit and reopened; the app says so.
 

@@ -14,7 +14,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [features]
-# Build for the Mac App Store: sandbox-friendly, no launch-at-login helper,
+# Build for the Mac App Store: sandbox-friendly, launch-at-login through the system login-item service,
 # no external donation link (Apple wants tips to go through in-app purchase).
 mas = []
 # Build for the Microsoft Store (MSIX): launch-at-login is handled by the
@@ -43,6 +43,8 @@ windows-sys = { version = "0.61", features = [
 
 [target.'cfg(target_os = "macos")'.dependencies]
 core-graphics = "0.25"
+# login item for the sandboxed Mac App Store build (macOS 13+)
+smappservice-rs = "0.1"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 enigo = "0.6"

@@ -4,7 +4,8 @@
       "entitlements": "./Entitlements.plist",
       "files": {
         "embedded.provisionprofile": "./embedded.provisionprofile"
-      }
+      },
+      "minimumSystemVersion": "13.0"
     }
   }
 }

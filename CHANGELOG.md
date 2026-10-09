@@ -9,4 +9,6 @@ First version.
 - Steps aside when you use the mouse or keyboard; resumes after a delay you choose.
 - Weekly timetable with randomised start, stop and break; skip today; session history.
 - Global hotkey, tray menu, compact always-on-top bar, keep-awake.
+- Simple view by default, with advanced options one click away.
+- Optional start with the computer.
 - English, French, German, Spanish, Portuguese. Light and dark themes.

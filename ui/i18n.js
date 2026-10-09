@@ -3,6 +3,13 @@
 // add an <option> to the language list in index.html.
 (function () {
   const en = {
+    'often.label': 'How often', 'often.often': 'Often (every 5 to 15 seconds)', 'often.normal': 'Normal (every 20 to 50 seconds)',
+    'often.rarely': 'Rarely (every 1 to 3 minutes)', 'often.custom': 'Custom (every {min} to {max} seconds)',
+    'adv.show': 'Advanced options', 'adv.hint': 'Exact timing, movement style, what happens while it runs', 'adv.timing': 'Timing and movement',
+    'set.advanced': 'Show advanced options', 'set.advanced.hint': 'More detailed choices, here and on the Run tab.',
+    'set.autostart.win': 'Windows keeps this switch for Store apps. Turn SoftMouseWiggler on in its list.', 'set.autostart.open': 'Open Windows startup settings',
+    'sched.autostart': 'The timetable only works while the app is open. Turn this on so it is always ready.',
+    'err.autostart': 'The computer did not accept the change. You can set it in your system settings instead.',
     'tab.run': 'Run', 'tab.schedule': 'Schedule', 'tab.settings': 'Settings',
     'common.ok': 'OK', 'common.cancel': 'Cancel', 'common.every': 'Every', 'common.to': 'to',
     'common.seconds': 'seconds', 'common.remove': 'Remove', 'common.min': 'min',
@@ -123,6 +130,13 @@
   };
 
   const fr = {
+    'often.label': 'Fréquence', 'often.often': 'Souvent (toutes les 5 à 15 secondes)', 'often.normal': 'Normal (toutes les 20 à 50 secondes)',
+    'often.rarely': 'Rarement (toutes les 1 à 3 minutes)', 'often.custom': 'Personnalisé (toutes les {min} à {max} secondes)',
+    'adv.show': 'Options avancées', 'adv.hint': 'Durées exactes, type de mouvement, comportement pendant qu’il tourne', 'adv.timing': 'Durées et mouvement',
+    'set.advanced': 'Afficher les options avancées', 'set.advanced.hint': 'Des choix plus détaillés, ici et dans l’onglet Lancer.',
+    'set.autostart.win': 'Pour les applications du Store, c’est Windows qui gère ce réglage. Activez SoftMouseWiggler dans sa liste.', 'set.autostart.open': 'Ouvrir les réglages de démarrage de Windows',
+    'sched.autostart': 'Les horaires ne fonctionnent que si l’application est ouverte. Activez ceci pour qu’elle soit toujours prête.',
+    'err.autostart': 'L’ordinateur n’a pas accepté le changement. Vous pouvez le régler dans les réglages du système.',
     'tab.run': 'Lancer', 'tab.schedule': 'Horaires', 'tab.settings': 'Réglages',
     'common.ok': 'OK', 'common.cancel': 'Annuler', 'common.every': 'Toutes les', 'common.to': 'à',
     'common.seconds': 'secondes', 'common.remove': 'Supprimer', 'common.min': 'min',
@@ -233,6 +247,13 @@
   };
 
   const de = {
+    'often.label': 'Wie oft', 'often.often': 'Oft (alle 5 bis 15 Sekunden)', 'often.normal': 'Normal (alle 20 bis 50 Sekunden)',
+    'often.rarely': 'Selten (alle 1 bis 3 Minuten)', 'often.custom': 'Eigene Werte (alle {min} bis {max} Sekunden)',
+    'adv.show': 'Erweiterte Optionen', 'adv.hint': 'Genaue Zeiten, Art der Bewegung, Verhalten während es läuft', 'adv.timing': 'Zeiten und Bewegung',
+    'set.advanced': 'Erweiterte Optionen anzeigen', 'set.advanced.hint': 'Mehr Einstellmöglichkeiten, hier und im Reiter Start.',
+    'set.autostart.win': 'Bei Store-Apps verwaltet Windows diesen Schalter. Aktivieren Sie SoftMouseWiggler in der Liste.', 'set.autostart.open': 'Windows-Autostart-Einstellungen öffnen',
+    'sched.autostart': 'Der Zeitplan funktioniert nur, solange die App geöffnet ist. Schalten Sie dies ein, damit sie immer bereit ist.',
+    'err.autostart': 'Der Computer hat die Änderung nicht angenommen. Sie können sie in den Systemeinstellungen vornehmen.',
     'tab.run': 'Start', 'tab.schedule': 'Zeitplan', 'tab.settings': 'Einstellungen',
     'common.ok': 'OK', 'common.cancel': 'Abbrechen', 'common.every': 'Alle', 'common.to': 'bis',
     'common.seconds': 'Sekunden', 'common.remove': 'Entfernen', 'common.min': 'Min',
@@ -343,6 +364,13 @@
   };
 
   const es = {
+    'often.label': 'Frecuencia', 'often.often': 'A menudo (cada 5 a 15 segundos)', 'often.normal': 'Normal (cada 20 a 50 segundos)',
+    'often.rarely': 'Pocas veces (cada 1 a 3 minutos)', 'often.custom': 'Personalizado (cada {min} a {max} segundos)',
+    'adv.show': 'Opciones avanzadas', 'adv.hint': 'Tiempos exactos, tipo de movimiento, comportamiento mientras funciona', 'adv.timing': 'Tiempos y movimiento',
+    'set.advanced': 'Mostrar opciones avanzadas', 'set.advanced.hint': 'Opciones más detalladas, aquí y en la pestaña Iniciar.',
+    'set.autostart.win': 'En las aplicaciones de la Store, Windows gestiona este ajuste. Activa SoftMouseWiggler en su lista.', 'set.autostart.open': 'Abrir los ajustes de inicio de Windows',
+    'sched.autostart': 'El horario solo funciona con la aplicación abierta. Activa esto para que siempre esté lista.',
+    'err.autostart': 'El ordenador no aceptó el cambio. Puedes ajustarlo en la configuración del sistema.',
     'tab.run': 'Iniciar', 'tab.schedule': 'Horario', 'tab.settings': 'Ajustes',
     'common.ok': 'Aceptar', 'common.cancel': 'Cancelar', 'common.every': 'Cada', 'common.to': 'a',
     'common.seconds': 'segundos', 'common.remove': 'Quitar', 'common.min': 'min',
@@ -453,6 +481,13 @@
   };
 
   const pt = {
+    'often.label': 'Frequência', 'often.often': 'Muitas vezes (a cada 5 a 15 segundos)', 'often.normal': 'Normal (a cada 20 a 50 segundos)',
+    'often.rarely': 'Raramente (a cada 1 a 3 minutos)', 'often.custom': 'Personalizado (a cada {min} a {max} segundos)',
+    'adv.show': 'Opções avançadas', 'adv.hint': 'Tempos exatos, tipo de movimento, comportamento enquanto funciona', 'adv.timing': 'Tempos e movimento',
+    'set.advanced': 'Mostrar opções avançadas', 'set.advanced.hint': 'Escolhas mais detalhadas, aqui e no separador Iniciar.',
+    'set.autostart.win': 'Nas aplicações da Store, é o Windows que gere esta opção. Ative o SoftMouseWiggler na lista.', 'set.autostart.open': 'Abrir as definições de arranque do Windows',
+    'sched.autostart': 'O horário só funciona com a aplicação aberta. Ative isto para estar sempre pronta.',
+    'err.autostart': 'O computador não aceitou a alteração. Pode defini-la nas definições do sistema.',
     'tab.run': 'Iniciar', 'tab.schedule': 'Horário', 'tab.settings': 'Definições',
     'common.ok': 'OK', 'common.cancel': 'Cancelar', 'common.every': 'A cada', 'common.to': 'a',
     'common.seconds': 'segundos', 'common.remove': 'Remover', 'common.min': 'min',

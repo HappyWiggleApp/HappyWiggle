@@ -19,6 +19,20 @@ with sync_playwright() as p:
         return pg
     pg = page()
     pg.screenshot(path=str(out / "01-idle.png"))
+    # simple view: the detailed fields stay out of sight until asked for
+    assert not pg.is_visible("#f-int-min") and not pg.is_visible("#f-wiggle-distance")
+    assert pg.input_value("#f-often") == "normal"
+    pg.select_option("#f-often", "often"); pg.wait_for_timeout(450)
+    pg.click("#btn-advanced"); pg.wait_for_timeout(450)
+    assert pg.is_visible("#f-int-min") and pg.input_value("#f-int-min") == "5" and pg.input_value("#f-int-max") == "15"
+    pg.fill("#f-int-max", "33"); pg.keyboard.press("Tab"); pg.wait_for_timeout(500)
+    assert pg.input_value("#f-often") == "custom", "an odd interval shows as Custom"
+    assert "33" in pg.inner_text("#opt-often-custom")
+    pg.screenshot(path=str(out / "01b-advanced.png"), full_page=True)
+    pg.select_option("#f-often", "normal"); pg.wait_for_timeout(450)
+    assert pg.input_value("#f-int-max") == "50"
+    pg.click("#btn-advanced"); pg.wait_for_timeout(450)
+    assert not pg.is_visible("#f-int-min")
     pg.click("#btn-start"); pg.wait_for_timeout(4500)
     assert pg.get_attribute("#stage", "data-phase") == "running"
     pg.screenshot(path=str(out / "02-wiggling.png"))
@@ -47,8 +61,19 @@ with sync_playwright() as p:
     pg.click("#btn-preset"); pg.wait_for_timeout(600)
     assert pg.locator(".week .plan").count() == 10, pg.locator(".week .plan").count()
     pg.screenshot(path=str(out / "09-schedule.png"), full_page=True)
+    assert pg.is_visible("#sched-autostart"), "the timetable suggests opening at startup"
     pg.click('[data-tab="settings"]'); pg.wait_for_timeout(200)
+    assert pg.is_visible("#f-autostart") and not pg.is_visible("#f-compact")
     pg.screenshot(path=str(out / "10-settings.png"), full_page=True)
+    pg.click("#f-advanced"); pg.wait_for_timeout(450)
+    assert pg.is_visible("#f-compact") and pg.is_visible("#f-hidden")
+    pg.click("#f-autostart"); pg.wait_for_timeout(450)
+    pg.click('[data-tab="schedule"]'); pg.wait_for_timeout(300)
+    assert not pg.is_visible("#sched-autostart")
+    pg.click('[data-tab="run"]'); pg.wait_for_timeout(200)
+    assert pg.is_visible("#f-int-min"), "one switch opens the advanced options everywhere"
+    pg.screenshot(path=str(out / "10b-run-advanced-click.png"), full_page=True)
+    pg.click('[data-tab="settings"]'); pg.wait_for_timeout(200)
     # hotkey capture
     pg.click("#btn-hotkey"); pg.keyboard.press("Control+Shift+KeyK"); pg.wait_for_timeout(500)
     assert pg.inner_text("#btn-hotkey") == "Ctrl + Shift + K", pg.inner_text("#btn-hotkey")
@@ -59,7 +84,7 @@ with sync_playwright() as p:
             pg.click(f'[data-tab="{tab}"]'); pg.wait_for_timeout(250)
             text = pg.inner_text("body")
             import re
-            leaks = re.findall(r"\b(?:tab|run|state|mode|click|sched|set|err|hist|stop|behave|about|jit|common|wiggle)\.[a-z0-9.]+\b", text)
+            leaks = re.findall(r"\b(?:tab|run|state|mode|click|sched|set|err|hist|stop|behave|about|jit|common|wiggle|often|adv)\.[a-z0-9.]+\b", text)
             assert not leaks, (lang, tab, leaks)
             wide = pg.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
             assert not wide, f"horizontal overflow in {lang}/{tab}"

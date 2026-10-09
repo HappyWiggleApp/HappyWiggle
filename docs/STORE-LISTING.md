@@ -111,7 +111,7 @@ Desktop (full trust) app packaged as MSIX. It sends mouse input with the standar
 ## Screenshots to prepare
 
 At least four, taken from the real app:
-1. Run tab, wiggling (dark green panel).
+1. Run tab, wiggling (dark blue panel).
 2. Run tab, Click areas with one target.
 3. Schedule tab with the week view.
 4. The compact bar over a desktop.

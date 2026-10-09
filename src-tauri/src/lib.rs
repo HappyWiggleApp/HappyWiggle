@@ -6,6 +6,7 @@
 //! that calls `tick`.
 
 mod input;
+mod startup;
 mod state;
 mod tray;
 mod worker;
@@ -21,9 +22,6 @@ use wiggler_core::{Settings, Status, MAX_AREAS};
 
 pub const APP_ID: &str = "app.softmousewiggler";
 
-/// True when launch-at-login is offered by this build. Store builds must use
-/// the store's own mechanism, so the switch is hidden there.
-const AUTOSTART: bool = cfg!(not(any(feature = "mas", feature = "msstore")));
 /// Apple wants tips to go through in-app purchase, so the Mac App Store build
 /// shows no external donation link.
 const DONATE: bool = cfg!(not(feature = "mas"));
@@ -33,7 +31,8 @@ const DONATE: bool = cfg!(not(feature = "mas"));
 struct Info {
     version: String,
     os: &'static str,
-    autostart: bool,
+    /// "switch" or "windowsSettings": how launch-at-login is offered.
+    autostart: startup::Mode,
     donate: bool,
     permission: bool,
     links: Links,
@@ -55,7 +54,7 @@ fn info(app: &AppHandle, shared: &Shared) -> Info {
     Info {
         version: app.package_info().version.to_string(),
         os: std::env::consts::OS,
-        autostart: AUTOSTART,
+        autostart: startup::MODE,
         donate: DONATE && !links.donate.is_empty(),
         permission: input::has_permission(),
         links,
@@ -101,8 +100,16 @@ fn save_settings(
             shared.save_settings(&s);
         }
     }
-    if old.autostart != new.autostart {
-        apply_autostart(&app, new.autostart);
+    if old.autostart != new.autostart && startup::set(&app, new.autostart).is_err() {
+        // the system said no: show the switch as it really is
+        let mut sup = shared.sup.lock().unwrap();
+        let mut s = sup.settings().clone();
+        s.autostart = old.autostart;
+        sup.set_settings(s.clone());
+        shared.save_settings(&s);
+        if result.is_ok() {
+            result = Err("autostart".into());
+        }
     }
     let current = shared.sup.lock().unwrap().settings().clone();
     let _ = app.emit("settings", &current);
@@ -420,6 +427,12 @@ fn open_link(app: AppHandle, shared: State<'_, Arc<Shared>>, which: String) -> R
         .map_err(|e| e.to_string())
 }
 
+/// Microsoft Store build: take the user to Windows' own startup switch.
+#[tauri::command]
+fn open_startup_settings(app: AppHandle) -> Result<(), String> {
+    startup::open_system_settings(&app)
+}
+
 #[tauri::command]
 fn quit(app: AppHandle) {
     app.exit(0);
@@ -440,20 +453,6 @@ fn apply_hotkey(app: &AppHandle, key: &str) -> Result<(), String> {
         }
     })
     .map_err(|_| "hotkey".to_string())
-}
-
-#[allow(unused_variables)]
-fn apply_autostart(app: &AppHandle, on: bool) {
-    #[cfg(not(any(feature = "mas", feature = "msstore")))]
-    {
-        use tauri_plugin_autostart::ManagerExt;
-        let launcher = app.autolaunch();
-        let _ = if on {
-            launcher.enable()
-        } else {
-            launcher.disable()
-        };
-    }
 }
 
 pub fn run() {
@@ -494,6 +493,7 @@ pub fn run() {
             set_compact,
             set_tray_labels,
             open_link,
+            open_startup_settings,
             quit
         ])
         .setup(|app| {
@@ -503,6 +503,18 @@ pub fn run() {
             let handle = app.handle().clone();
 
             tray::build(app, &shared)?;
+
+            // The user may have changed launch-at-login outside the app
+            // (Task Manager, System Settings): show what is really set.
+            if let Some(on) = startup::is_on(&handle) {
+                let mut sup = shared.sup.lock().unwrap();
+                if sup.settings().autostart != on {
+                    let mut s = sup.settings().clone();
+                    s.autostart = on;
+                    sup.set_settings(s.clone());
+                    shared.save_settings(&s);
+                }
+            }
 
             let settings = shared.sup.lock().unwrap().settings().clone();
             if apply_hotkey(&handle, &settings.hotkey).is_err() {

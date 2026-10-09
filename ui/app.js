@@ -157,6 +157,7 @@
   }
 
   $('btn-start').onclick = () => control('start');
+  $('btn-advanced').onclick = () => { S.advanced = !S.advanced; renderForm(); save(); };
   $('btn-stop').onclick = () => control('stop');
   $('btn-pause').onclick = () => control($('btn-pause').dataset.action);
   $('btn-compact').onclick = () => invoke('set_compact', { compact: true });
@@ -176,12 +177,21 @@
   }
   const bound = [];
 
+  // One pair of interval fields, bound to whichever mode is selected.
+  const PRESETS = { often: [5, 15], normal: [20, 50], rarely: [60, 180] };
+  const interval = () => (S.mode === 'click' ? [S.clickMinS, S.clickMaxS] : [S.wiggleMinS, S.wiggleMaxS]);
+  function setInterval_(min, max) {
+    if (S.mode === 'click') { if (min != null) S.clickMinS = min; if (max != null) S.clickMaxS = max; }
+    else { if (min != null) S.wiggleMinS = min; if (max != null) S.wiggleMaxS = max; }
+  }
+  const presetName = () => { const [a, b] = interval(); return Object.keys(PRESETS).find((k) => PRESETS[k][0] === a && PRESETS[k][1] === b) || 'custom'; };
+  bind('f-int-min', () => interval()[0], (v) => setInterval_(v, null));
+  bind('f-int-max', () => interval()[1], (v) => setInterval_(null, v));
+  bind('f-often', presetName, (v) => { if (PRESETS[v]) setInterval_(PRESETS[v][0], PRESETS[v][1]); });
+  bind('f-advanced', () => S.advanced, (v) => { S.advanced = v; });
+  bind('f-autostart-2', () => S.autostart, (v) => { S.autostart = v; });
   bind('f-wiggle-style', () => S.wiggleStyle, (v) => { S.wiggleStyle = v; });
-  bind('f-wiggle-min', () => S.wiggleMinS, (v) => { S.wiggleMinS = v; });
-  bind('f-wiggle-max', () => S.wiggleMaxS, (v) => { S.wiggleMaxS = v; });
   bind('f-wiggle-distance', () => S.wiggleDistance, (v) => { S.wiggleDistance = v; });
-  bind('f-click-min', () => S.clickMinS, (v) => { S.clickMinS = v; });
-  bind('f-click-max', () => S.clickMaxS, (v) => { S.clickMaxS = v; });
   bind('f-order', () => S.areaOrder, (v) => { S.areaOrder = v; });
   bind('f-button', () => S.button, (v) => { S.button = v; });
   bind('f-smooth', () => S.smoothMove, (v) => { S.smoothMove = v; });
@@ -208,11 +218,21 @@
     if (!S) return;
     bound.forEach((el) => el._fill());
     document.querySelectorAll('.segmented button').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.mode === S.mode)));
-    $('opts-wiggle').hidden = S.mode !== 'wiggle';
-    $('opts-click').hidden = S.mode !== 'click';
-    $('row-distance').hidden = S.wiggleStyle !== 'natural';
+    document.querySelectorAll('[data-for]').forEach((el) => { el.hidden = el.dataset.for !== S.mode; });
+    $('targets-box').hidden = S.mode !== 'click';
+    if (S.wiggleStyle !== 'natural') $('row-distance').hidden = true;
+    // simple view: three named speeds; anything else shows as "Custom"
+    const [lo, hi] = interval();
+    const custom = presetName() === 'custom';
+    $('opt-often-custom').hidden = !custom;
+    $('opt-often-custom').textContent = t('often.custom', { min: lo, max: hi });
+    $('f-often').value = presetName();
+    $('advanced').hidden = !S.advanced;
+    $('btn-advanced').setAttribute('aria-expanded', String(!!S.advanced));
+    document.querySelectorAll('[data-adv]').forEach((el) => { el.hidden = !S.advanced; });
+    $('sched-autostart').hidden = !(INFO && INFO.autostart === 'switch' && !S.autostart);
     $('o-wiggle-distance').textContent = t('unit.px', { n: S.wiggleDistance });
-    $('row-order').hidden = S.areas.length < 2;
+    if (S.areas.length < 2) $('row-order').hidden = true;
     $('row-resume').hidden = !S.pauseOnUser;
     $('opt-after-actions').textContent = t(S.mode === 'click' ? 'stop.clicks' : 'stop.wiggles');
     $('f-stop-actions').hidden = S.stop.kind !== 'afterActions';
@@ -547,7 +567,9 @@
 
   const snap = await invoke('get_state');
   S = snap.settings; ST = snap.status; INFO = snap.info;
-  $('row-autostart').hidden = !INFO.autostart;
+  $('row-autostart').hidden = INFO.autostart !== 'switch';
+  $('row-startup-win').hidden = INFO.autostart !== 'windowsSettings';
+  $('btn-startup-win').onclick = () => invoke('open_startup_settings').catch(problem);
   document.querySelectorAll('[data-link]').forEach((b) => {
     const url = INFO.links[b.dataset.link];
     b.hidden = !url || (b.dataset.link === 'donate' && !INFO.donate);

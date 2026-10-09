@@ -61,25 +61,8 @@
       <button type="button" role="radio" data-mode="click"><strong data-i18n="mode.click"></strong><small data-i18n="mode.click.hint"></small></button>
     </div>
 
-    <!-- wiggle options -->
-    <div id="opts-wiggle" class="rows">
-      <label class="row"><span data-i18n="wiggle.style"></span>
-        <select id="f-wiggle-style">
-          <option value="natural" data-i18n="wiggle.natural"></option>
-          <option value="subtle" data-i18n="wiggle.subtle"></option>
-        </select>
-      </label>
-      <div class="row"><span data-i18n="common.every"></span>
-        <span class="range"><input type="number" id="f-wiggle-min" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.to"></i><input type="number" id="f-wiggle-max" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.seconds"></i></span>
-      </div>
-      <label class="row" id="row-distance"><span data-i18n="wiggle.distance"></span>
-        <span class="range"><input type="range" id="f-wiggle-distance" min="10" max="300" step="10"><output id="o-wiggle-distance"></output></span>
-      </label>
-    </div>
-
-    <!-- click options -->
-    <div id="opts-click" class="rows" hidden>
-      <div class="targets">
+    <div class="rows" id="basic">
+      <div class="targets" id="targets-box" hidden>
         <p class="hint" id="targets-empty" data-i18n="click.empty"></p>
         <ul id="targets"></ul>
         <div class="target-actions">
@@ -87,27 +70,14 @@
           <button type="button" class="secondary" id="btn-capture" data-i18n="click.capture"></button>
         </div>
       </div>
-      <div class="row"><span data-i18n="common.every"></span>
-        <span class="range"><input type="number" id="f-click-min" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.to"></i><input type="number" id="f-click-max" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.seconds"></i></span>
-      </div>
-      <label class="row" id="row-order"><span data-i18n="click.order"></span>
-        <select id="f-order">
-          <option value="random" data-i18n="click.order.random"></option>
-          <option value="sequence" data-i18n="click.order.sequence"></option>
+      <label class="row"><span data-i18n="often.label"></span>
+        <select id="f-often">
+          <option value="often" data-i18n="often.often"></option>
+          <option value="normal" data-i18n="often.normal"></option>
+          <option value="rarely" data-i18n="often.rarely"></option>
+          <option value="custom" id="opt-often-custom" hidden></option>
         </select>
       </label>
-      <label class="row"><span data-i18n="click.button"></span>
-        <select id="f-button">
-          <option value="left" data-i18n="click.left"></option>
-          <option value="right" data-i18n="click.right"></option>
-        </select>
-      </label>
-      <label class="row switch"><span><b data-i18n="click.glide"></b><small data-i18n="click.glide.hint"></small></span><input type="checkbox" id="f-smooth"></label>
-      <label class="row switch"><span><b data-i18n="click.return"></b><small data-i18n="click.return.hint"></small></span><input type="checkbox" id="f-return"></label>
-    </div>
-
-    <h2 data-i18n="stop.title"></h2>
-    <div class="rows">
       <div class="row"><span data-i18n="stop.when"></span>
         <span class="range">
           <select id="f-stop-kind">
@@ -123,13 +93,50 @@
       </div>
     </div>
 
-    <h2 data-i18n="behave.title"></h2>
-    <div class="rows">
-      <label class="row switch"><span><b data-i18n="behave.pause"></b><small data-i18n="behave.pause.hint"></small></span><input type="checkbox" id="f-pause-user"></label>
-      <div class="row" id="row-resume"><span data-i18n="behave.resume"></span>
-        <span class="range"><input type="number" id="f-resume" min="1" max="600"><i data-i18n="common.seconds"></i></span>
+    <button type="button" class="disclosure" id="btn-advanced" aria-expanded="false" aria-controls="advanced">
+      <span><b data-i18n="adv.show"></b><small data-i18n="adv.hint"></small></span>
+      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 7.500l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div id="advanced" hidden>
+      <h2 data-i18n="adv.timing"></h2>
+      <div class="rows">
+        <div class="row"><span data-i18n="common.every"></span>
+          <span class="range"><input type="number" id="f-int-min" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.to"></i><input type="number" id="f-int-max" min="1" max="3600" step="1" inputmode="numeric"><i data-i18n="common.seconds"></i></span>
+        </div>
+        <label class="row" data-for="wiggle"><span data-i18n="wiggle.style"></span>
+          <select id="f-wiggle-style">
+            <option value="natural" data-i18n="wiggle.natural"></option>
+            <option value="subtle" data-i18n="wiggle.subtle"></option>
+          </select>
+        </label>
+        <label class="row" data-for="wiggle" id="row-distance"><span data-i18n="wiggle.distance"></span>
+          <span class="range"><input type="range" id="f-wiggle-distance" min="10" max="300" step="10"><output id="o-wiggle-distance"></output></span>
+        </label>
+        <label class="row" data-for="click" id="row-order"><span data-i18n="click.order"></span>
+          <select id="f-order">
+            <option value="random" data-i18n="click.order.random"></option>
+            <option value="sequence" data-i18n="click.order.sequence"></option>
+          </select>
+        </label>
+        <label class="row" data-for="click"><span data-i18n="click.button"></span>
+          <select id="f-button">
+            <option value="left" data-i18n="click.left"></option>
+            <option value="right" data-i18n="click.right"></option>
+          </select>
+        </label>
+        <label class="row switch" data-for="click"><span><b data-i18n="click.glide"></b><small data-i18n="click.glide.hint"></small></span><input type="checkbox" id="f-smooth"></label>
+        <label class="row switch" data-for="click"><span><b data-i18n="click.return"></b><small data-i18n="click.return.hint"></small></span><input type="checkbox" id="f-return"></label>
       </div>
-      <label class="row switch"><span><b data-i18n="behave.awake"></b><small data-i18n="behave.awake.hint"></small></span><input type="checkbox" id="f-awake"></label>
+
+      <h2 data-i18n="behave.title"></h2>
+      <div class="rows">
+        <label class="row switch"><span><b data-i18n="behave.pause"></b><small data-i18n="behave.pause.hint"></small></span><input type="checkbox" id="f-pause-user"></label>
+        <div class="row" id="row-resume"><span data-i18n="behave.resume"></span>
+          <span class="range"><input type="number" id="f-resume" min="1" max="600"><i data-i18n="common.seconds"></i></span>
+        </div>
+        <label class="row switch"><span><b data-i18n="behave.awake"></b><small data-i18n="behave.awake.hint"></small></span><input type="checkbox" id="f-awake"></label>
+      </div>
     </div>
   </fieldset>
 </section>
@@ -154,6 +161,9 @@
       <button type="button" class="secondary small" id="btn-skip"></button>
     </div>
     <p class="sched-status" id="sched-status"></p>
+    <div class="rows nudge" id="sched-autostart" hidden>
+      <label class="row switch"><span><b data-i18n="set.autostart"></b><small data-i18n="sched.autostart"></small></span><input type="checkbox" id="f-autostart-2"></label>
+    </div>
 
     <div class="week" id="week" aria-hidden="true"></div>
     <p class="legend"><span class="key plan"></span><span data-i18n="sched.legend.plan"></span><span class="key drift"></span><span data-i18n="sched.legend.drift"></span></p>
@@ -198,12 +208,16 @@
         <option value="pt">Português</option>
       </select>
     </label>
-    <label class="row switch"><span><b data-i18n="set.compact"></b><small data-i18n="set.compact.hint"></small></span><input type="checkbox" id="f-compact"></label>
     <label class="row switch" id="row-autostart"><span><b data-i18n="set.autostart"></b><small data-i18n="set.autostart.hint"></small></span><input type="checkbox" id="f-autostart"></label>
-    <label class="row switch"><span><b data-i18n="set.hidden"></b><small data-i18n="set.hidden.hint"></small></span><input type="checkbox" id="f-hidden"></label>
+    <div class="row" id="row-startup-win" hidden><span><b data-i18n="set.autostart"></b><small data-i18n="set.autostart.win"></small></span>
+      <button type="button" class="secondary small" id="btn-startup-win" data-i18n="set.autostart.open"></button>
+    </div>
     <div class="row" id="row-permission" hidden><span><b data-i18n="set.permission"></b><small id="permission-state"></small></span>
       <button type="button" class="secondary small" id="btn-permission" data-i18n="set.permission.ask"></button>
     </div>
+    <label class="row switch"><span><b data-i18n="set.advanced"></b><small data-i18n="set.advanced.hint"></small></span><input type="checkbox" id="f-advanced"></label>
+    <label class="row switch" data-adv><span><b data-i18n="set.compact"></b><small data-i18n="set.compact.hint"></small></span><input type="checkbox" id="f-compact"></label>
+    <label class="row switch" data-adv><span><b data-i18n="set.hidden"></b><small data-i18n="set.hidden.hint"></small></span><input type="checkbox" id="f-hidden"></label>
   </div>
 
   <h2 data-i18n="about.title"></h2>

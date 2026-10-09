@@ -25,11 +25,11 @@
     break: { startMin: 780, endMin: 840, startJitter: jit('either', 5), endJitter: jit('either', 5) }, mode: null,
   });
   let settings = {
-    mode: 'wiggle', areas: [], areaOrder: 'random', button: 'left', clickMinS: 20, clickMaxS: 60,
+    mode: 'wiggle', areas: [], areaOrder: 'random', button: 'left', clickMinS: 20, clickMaxS: 50,
     smoothMove: true, returnCursor: true, wiggleStyle: 'natural', wiggleMinS: 20, wiggleMaxS: 50, wiggleDistance: 60,
     stop: { kind: 'never', actions: 100, minutes: 60, atMinute: 1020 },
     pauseOnUser: true, resumeAfterS: 5, keepAwake: true, hotkey: 'F8', compactOnStart: false,
-    theme: 'system', language: 'auto', autostart: false, startHidden: false, onboarded: false,
+    theme: 'system', language: 'auto', autostart: false, startHidden: false, onboarded: false, advanced: false,
     schedule: { enabled: false, blocks: [], skipDay: null },
   };
   const now = () => Date.now();
@@ -150,7 +150,7 @@
 
   const commands = {
     get_state: () => ({
-      info: { version: '0.1.0', os: 'preview', autostart: true, donate: true, permission: true, links: { source: 'https://', issues: 'https://', privacy: 'https://', donate: 'https://' } },
+      info: { version: '0.1.0', os: 'preview', autostart: 'switch', donate: true, permission: true, links: { source: 'https://', issues: 'https://', privacy: 'https://', donate: 'https://' } },
       settings, status: status(),
     }),
     save_settings: ({ settings: s }) => { settings = sanitize(JSON.parse(JSON.stringify(s))); emit('settings', settings); push(); return settings; },
@@ -177,6 +177,7 @@
     set_compact: ({ compact }) => { document.body.classList.toggle('compact-preview', !!compact); },
     set_tray_labels: () => {},
     open_link: () => {},
+    open_startup_settings: () => {},
     quit: () => {},
   };
 
