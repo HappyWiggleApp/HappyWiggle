@@ -513,7 +513,13 @@
   $('btn-quit').onclick = () => invoke('quit');
   document.querySelectorAll('[data-link]').forEach((b) => { b.onclick = () => invoke('open_link', { which: b.dataset.link }).catch(problem); });
 
-  function applyTheme() { document.documentElement.dataset.theme = S.theme || 'system'; }
+  let themeSet = false;
+  function applyTheme() {
+    // "system" means: leave the choice to the computer (or to the page hosting the preview)
+    const root = document.documentElement;
+    if (S.theme === 'light' || S.theme === 'dark') { root.dataset.theme = S.theme; themeSet = true; }
+    else if (themeSet || !API.preview) { root.removeAttribute('data-theme'); themeSet = false; }
+  }
   function applyLanguage() {
     I18N.setLanguage(S.language);
     $('version').textContent = t('about.version', { v: INFO.version });

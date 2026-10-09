@@ -52,7 +52,7 @@ window.initBar = async function (root) {
 
   API.on('status', (s) => { status = s; render(); });
   API.on('settings', (s) => { settings = s; I18N.setLanguage(s.language); applyTheme(s.theme); render(); });
-  function applyTheme(theme) { document.documentElement.dataset.theme = theme || 'system'; }
+  function applyTheme(theme) { const r = document.documentElement; if (theme === 'light' || theme === 'dark') r.dataset.theme = theme; else r.removeAttribute('data-theme'); }
 
   const snap = await API.invoke('get_state');
   status = snap.status; settings = snap.settings;
