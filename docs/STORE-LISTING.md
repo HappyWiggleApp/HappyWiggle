@@ -7,7 +7,7 @@ descriptions and reviewers react badly to them.
 
 ## Name
 
-SoftMouseWiggler
+HappyWiggle
 
 ## Subtitle / short description (max 30 characters on Apple)
 
@@ -19,7 +19,7 @@ Free, open-source mouse wiggler and auto clicker. Keeps your computer awake. No 
 
 ## Full description (English)
 
-SoftMouseWiggler keeps your computer awake and your session active, without ads, accounts or tracking.
+HappyWiggle keeps your computer awake and your session active, without ads, accounts or tracking.
 
 Two modes in one small app:
 
@@ -48,7 +48,7 @@ Please use it responsibly: check your organisation's rules before using automati
 
 ## Full description (French)
 
-SoftMouseWiggler garde votre ordinateur éveillé et votre session active, sans publicité, sans compte et sans suivi.
+HappyWiggle garde votre ordinateur éveillé et votre session active, sans publicité, sans compte et sans suivi.
 
 Deux modes dans une petite application :
 
@@ -98,7 +98,7 @@ No objectionable content of any kind: answer "No" or "None" to every question.
 
 ## Notes for the reviewer (Apple "App Review Information")
 
-SoftMouseWiggler is a keep-awake and click-automation utility, in the same category as other mouse movers already on the Mac App Store.
+HappyWiggle is a keep-awake and click-automation utility, in the same category as other mouse movers already on the Mac App Store.
 
 How to test: open the app, press Start in "Wiggle only" mode. macOS asks once for permission to control the pointer (Privacy & Security > Accessibility); allow it and press Start again. The pointer makes a short movement every 20 to 50 seconds and returns to where it was. Touch the mouse and the app pauses itself. Press F8 or Stop to end.
 

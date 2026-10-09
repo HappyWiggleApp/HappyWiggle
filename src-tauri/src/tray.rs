@@ -35,12 +35,12 @@ impl Default for Labels {
             stop: "Stop".into(),
             pause: "Pause".into(),
             resume: "Resume".into(),
-            show: "Open SoftMouseWiggler".into(),
+            show: "Open HappyWiggle".into(),
             quit: "Quit".into(),
-            idle: "SoftMouseWiggler: off".into(),
-            running: "SoftMouseWiggler: running".into(),
-            paused: "SoftMouseWiggler: paused".into(),
-            waiting: "SoftMouseWiggler: waiting for you to let go of the mouse".into(),
+            idle: "HappyWiggle: off".into(),
+            running: "HappyWiggle: running".into(),
+            paused: "HappyWiggle: paused".into(),
+            waiting: "HappyWiggle: waiting for you to let go of the mouse".into(),
         }
     }
 }

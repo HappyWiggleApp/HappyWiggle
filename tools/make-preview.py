@@ -12,7 +12,7 @@ html = re.sub(r'<script src="([\w.-]+)"></script>', inline, html)
 svg = (ui / "icon.svg").read_text()
 import base64
 html = html.replace('src="icon.svg"', 'src="data:image/svg+xml;base64,' + base64.b64encode(svg.encode()).decode() + '"')
-html = html.replace("<title>SoftMouseWiggler</title>", "<title>SoftMouseWiggler Preview</title>")
+html = html.replace("<title>HappyWiggle</title>", "<title>HappyWiggle Preview</title>")
 out = root / "dist"; out.mkdir(exist_ok=True)
 (out / "preview.html").write_text(html)
 print("wrote", out / "preview.html", len(html) // 1024, "KB")

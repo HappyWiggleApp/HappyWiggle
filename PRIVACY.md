@@ -2,7 +2,7 @@
 
 Last updated: 9 October 2026
 
-SoftMouseWiggler does not collect, transmit or share any personal data.
+HappyWiggle does not collect, transmit or share any personal data.
 
 ## What the app stores, and where
 

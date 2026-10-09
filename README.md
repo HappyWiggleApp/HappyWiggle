@@ -1,4 +1,4 @@
-# SoftMouseWiggler
+# HappyWiggle
 
 A free, open-source mouse wiggler and auto clicker for Windows and macOS.
 No ads, no account, no tracking, no network access.

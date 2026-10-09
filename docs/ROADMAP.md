@@ -1,6 +1,6 @@
 # From idea to both stores: the roadmap
 
-This is the full path for SoftMouseWiggler, with what is already done, what
+This is the full path for HappyWiggle, with what is already done, what
 is left, who does each step, what it costs and how long it takes.
 
 "You" means the project owner. "Claude" means a step an AI agent can do for
@@ -59,7 +59,7 @@ Decisions and why:
 
 Same functions as Green Dotter: click a spot or area at random intervals, wiggle mode, pause when the mouse is touched, stop rules, F8 kill switch, keep-awake, tray, compact bar, weekly timetable with randomised times, session history.
 
-Where SoftMouseWiggler goes further:
+Where HappyWiggle goes further:
 
 - Open source, and the app never goes online.
 - Up to five targets, at random or in turn.
@@ -98,10 +98,10 @@ Two GitHub Actions workflows:
 GitHub builds on real Windows and macOS machines for free on public repositories.
 
 1. Create a free account at github.com if you do not have one.
-2. Create a new **public** repository named `softmousewiggler`, empty (no README).
+2. Create a new **public** repository named `happywiggle`, empty (no README).
 3. Put the code there. Either:
    - unzip the project, and in that folder run
-     `git remote add origin https://github.com/YOUR-NAME/softmousewiggler.git` then `git push -u origin main`, or
+     `git remote add origin https://github.com/happywiggleapp/happywiggle.git` then `git push -u origin main`, or
    - connect GitHub to Claude and ask Claude to push it.
 4. Open the repository's **Actions** tab and watch the "CI" run (about 15 minutes the first time).
 5. If a build fails, copy the error to Claude, or give Claude access to the repository so it can read the logs and fix the code itself. This is the normal loop: build, read the error, fix, push again.
@@ -110,7 +110,7 @@ GitHub builds on real Windows and macOS machines for free on public repositories
 Then fill in your own details (Claude can do this once you choose them):
 
 - `src-tauri/links.json`: your repository, issues, privacy page and donation links.
-- `docs/index.html`: replace `YOUR-GITHUB-NAME` (five places).
+- `docs/index.html`: replace `happywiggleapp` (five places).
 - `LICENSE`: your name, if you want it there.
 
 ## Stage 7. Test on real machines (you: 30 to 60 minutes)
@@ -139,7 +139,7 @@ Report anything odd to Claude with a description or a screenshot.
 Both stores require a public privacy policy address.
 
 1. In the repository: **Settings > Pages > Build and deployment**: Source "Deploy from a branch", branch `main`, folder `/docs`. Save.
-2. After a minute the site is live at `https://YOUR-NAME.github.io/softmousewiggler/` and the policy at `.../privacy.html`.
+2. After a minute the site is live at `https://happywiggleapp.github.io/happywiggle/` and the policy at `.../privacy.html`.
 3. Optional: a custom domain costs about 10 to 15 EUR a year.
 
 Donations: create a page on GitHub Sponsors, Ko-fi or Buy Me a Coffee and put its address in `src-tauri/links.json` under `donate`. The button then appears in Settings on Windows and in the direct-download Mac build.
@@ -149,7 +149,7 @@ Donations: create a page on GitHub Sponsors, Ko-fi or Buy Me a Coffee and put it
 Cost: free for individuals since September 2025.
 
 1. Register at https://storedeveloper.microsoft.com as an individual. Identity is checked with a government ID and a selfie.
-2. In Partner Center, create a new app and **reserve the name** "SoftMouseWiggler". If it is taken, choose another and tell Claude so the name can be changed everywhere.
+2. In Partner Center, create a new app and **reserve the name** "HappyWiggle". If it is taken, choose another and tell Claude so the name can be changed everywhere.
 3. Open **Product management > Product identity** and copy three values: Package/Identity/Name, Package/Identity/Publisher, and Publisher display name.
 4. In your GitHub repository: **Settings > Secrets and variables > Actions > Variables**, add them as `MSSTORE_IDENTITY_NAME`, `MSSTORE_PUBLISHER` and `MSSTORE_PUBLISHER_DISPLAY_NAME`.
 5. Set the version to `1.0.0` for the first store release (a version starting with 0 may be refused by the Store), then make a release: `git tag v1.0.0` and `git push origin v1.0.0` (or ask Claude). When the "Release" workflow finishes, download the `.msix` file from the draft release.
@@ -176,7 +176,7 @@ Honest risk assessment: comparable apps are on the Mac App Store today (Amphetam
 
 1. Enrol at https://developer.apple.com/programs/ (identity check, payment).
 2. In **Certificates, Identifiers & Profiles**:
-   - Register an App ID with the bundle identifier from `src-tauri/tauri.conf.json` (`app.softmousewiggler`, or your own, for example `com.yourname.softmousewiggler`; if you change it, change `APP_ID` in `src-tauri/src/lib.rs` too).
+   - Register an App ID with the bundle identifier from `src-tauri/tauri.conf.json` (`app.happywiggle`, or your own, for example `com.yourname.happywiggle`; if you change it, change `APP_ID` in `src-tauri/src/lib.rs` too).
    - Create two certificates: "Apple Distribution" and "Mac Installer Distribution".
    - Create a provisioning profile of type "Mac App Store Connect" for that App ID and download it as `src-tauri/embedded.provisionprofile`.
 3. In `src-tauri/Entitlements.plist`, replace `TEAMID` with your Team ID (shown on your Apple developer account page).

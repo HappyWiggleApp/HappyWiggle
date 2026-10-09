@@ -2,7 +2,7 @@
 Packs the already-built app into an .msix for the Microsoft Store.
 
 Before running:   npx tauri build --no-bundle --features msstore
-Then:             ./packaging/windows/make-msix.ps1 -IdentityName "12345Name.SoftMouseWiggler" `
+Then:             ./packaging/windows/make-msix.ps1 -IdentityName "12345Name.HappyWiggle" `
                       -Publisher "CN=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" -PublisherDisplayName "Your Name"
 
 The three values are shown in Partner Center under
@@ -17,7 +17,7 @@ param(
 )
 $ErrorActionPreference = "Stop"
 $root = Resolve-Path "$PSScriptRoot/../.."
-$exe = Join-Path $root "target/release/softmousewiggler.exe"
+$exe = Join-Path $root "target/release/happywiggle.exe"
 if (-not (Test-Path $exe)) { throw "Build first: npx tauri build --no-bundle --features msstore" }
 
 # version 0.1.0 in tauri.conf.json becomes 0.1.0.0 (the Store wants four parts, the last one 0)
@@ -42,7 +42,7 @@ $makeappx = Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin\*\x64\ma
 if (-not $makeappx) { throw "makeappx.exe not found. Install the Windows SDK." }
 
 New-Item -ItemType Directory -Force $OutDir | Out-Null
-$out = Join-Path (Resolve-Path $OutDir) "SoftMouseWiggler_${version}_x64.msix"
+$out = Join-Path (Resolve-Path $OutDir) "HappyWiggle_${version}_x64.msix"
 & $makeappx.FullName pack /d $stage /p $out /o
 if ($LASTEXITCODE -ne 0) { throw "makeappx failed" }
 Write-Host "Created $out"

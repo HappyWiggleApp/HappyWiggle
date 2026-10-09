@@ -12,7 +12,7 @@
   <Identity Name="{{IDENTITY_NAME}}" Publisher="{{PUBLISHER}}" Version="{{VERSION}}" ProcessorArchitecture="x64" />
 
   <Properties>
-    <DisplayName>SoftMouseWiggler</DisplayName>
+    <DisplayName>HappyWiggle</DisplayName>
     <PublisherDisplayName>{{PUBLISHER_DISPLAY_NAME}}</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,9 +30,9 @@
   </Resources>
 
   <Applications>
-    <Application Id="SoftMouseWiggler" Executable="softmousewiggler.exe" EntryPoint="Windows.FullTrustApplication">
+    <Application Id="HappyWiggle" Executable="happywiggle.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
-        DisplayName="SoftMouseWiggler"
+        DisplayName="HappyWiggle"
         Description="Free, open-source mouse wiggler and auto clicker"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
@@ -40,8 +40,8 @@
       <Extensions>
         <!-- Lets the user switch on "start with Windows" in
              Settings > Apps > Startup. Off unless they choose it. -->
-        <desktop:Extension Category="windows.startupTask" Executable="softmousewiggler.exe" EntryPoint="Windows.FullTrustApplication">
-          <desktop:StartupTask TaskId="SoftMouseWigglerStartup" Enabled="false" DisplayName="SoftMouseWiggler" />
+        <desktop:Extension Category="windows.startupTask" Executable="happywiggle.exe" EntryPoint="Windows.FullTrustApplication">
+          <desktop:StartupTask TaskId="HappyWiggleStartup" Enabled="false" DisplayName="HappyWiggle" />
         </desktop:Extension>
       </Extensions>
     </Application>

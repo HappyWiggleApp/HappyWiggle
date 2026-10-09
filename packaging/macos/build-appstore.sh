@@ -28,8 +28,8 @@ npm ci
 npx tauri build --bundles app --target universal-apple-darwin --features mas \
   --config src-tauri/tauri.appstore.conf.json
 
-APP="target/universal-apple-darwin/release/bundle/macos/SoftMouseWiggler.app"
-PKG="SoftMouseWiggler.pkg"
+APP="target/universal-apple-darwin/release/bundle/macos/HappyWiggle.app"
+PKG="HappyWiggle.pkg"
 xcrun productbuild --sign "$INSTALLER_IDENTITY" --component "$APP" /Applications "$PKG"
 echo "Created $PKG"
 

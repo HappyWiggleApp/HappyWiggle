@@ -1,4 +1,4 @@
-//! SoftMouseWiggler desktop shell.
+//! HappyWiggle desktop shell.
 //!
 //! All decisions (when to move, when to stop, the timetable) live in the
 //! `wiggler-core` crate. This file only wires that engine to the real world:
@@ -20,7 +20,7 @@ use wiggler_core::platform::{Point, Rect};
 use wiggler_core::schedule::Segment;
 use wiggler_core::{Settings, Status, MAX_AREAS};
 
-pub const APP_ID: &str = "app.softmousewiggler";
+pub const APP_ID: &str = "app.happywiggle";
 
 /// Apple wants tips to go through in-app purchase, so the Mac App Store build
 /// shows no external donation link.
@@ -254,7 +254,7 @@ async fn pick_area(
             format!("overlay-{i}"),
             WebviewUrl::App("overlay.html".into()),
         )
-        .title("SoftMouseWiggler")
+        .title("HappyWiggle")
         .transparent(true)
         .decorations(false)
         .always_on_top(true)
@@ -550,7 +550,7 @@ pub fn run() {
             }
         })
         .build(tauri::generate_context!())
-        .expect("error while starting SoftMouseWiggler")
+        .expect("error while starting HappyWiggle")
         .run(|_app, _event| {
             // macOS: clicking the Dock icon brings the window back.
             #[cfg(target_os = "macos")]

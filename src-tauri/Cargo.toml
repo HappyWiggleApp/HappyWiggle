@@ -1,5 +1,5 @@
 [package]
-name = "softmousewiggler"
+name = "happywiggle"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
@@ -7,7 +7,7 @@ description = "Free, open-source mouse wiggler and auto clicker."
 rust-version = "1.90"
 
 [lib]
-name = "softmousewiggler_lib"
+name = "happywiggle_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

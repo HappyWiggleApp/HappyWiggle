@@ -46,8 +46,8 @@ fn run(app: AppHandle, shared: Arc<Shared>) {
                 awake = keepawake::Builder::default()
                     .display(true)
                     .idle(true)
-                    .reason("SoftMouseWiggler session running")
-                    .app_name("SoftMouseWiggler")
+                    .reason("HappyWiggle session running")
+                    .app_name("HappyWiggle")
                     .app_reverse_domain(crate::APP_ID)
                     .create()
                     .ok();

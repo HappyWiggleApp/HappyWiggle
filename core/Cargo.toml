@@ -3,7 +3,7 @@ name = "wiggler-core"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-description = "Platform-independent engine for SoftMouseWiggler: timing, motion, stop rules, scheduler."
+description = "Platform-independent engine for HappyWiggle: timing, motion, stop rules, scheduler."
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }

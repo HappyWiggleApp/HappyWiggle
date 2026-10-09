@@ -1,4 +1,4 @@
-//! Platform-independent engine for SoftMouseWiggler.
+//! Platform-independent engine for HappyWiggle.
 //!
 //! Nothing in this crate touches the operating system. The app hands it a
 //! [`platform::Platform`] (the real mouse, or a fake one in tests) and a
