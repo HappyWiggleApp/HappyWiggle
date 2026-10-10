@@ -3,87 +3,217 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HappyWiggle: free mouse wiggler and auto clicker</title>
-<meta name="description" content="Free, open-source mouse wiggler and auto clicker for Windows and Mac. Keeps your computer awake. No ads, no tracking, no network access.">
+<title>HappyWiggle: free mouse wiggler and auto clicker for Windows and Mac</title>
+<meta name="description" content="Keeps your computer awake and your session active. Wiggle the mouse or click a safe area at random intervals. Free, open source, no ads, never goes online.">
+<meta property="og:title" content="HappyWiggle: free mouse wiggler and auto clicker for Windows and Mac">
+<meta property="og:description" content="Keeps your computer awake and your session active. Wiggle the mouse or click a safe area at random intervals. Free, open source, no ads, never goes online.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://happywiggleapp.github.io/HappyWiggle/img/social.png">
 <link rel="icon" href="icon.svg">
-<style>
-  :root { --bg:#f3f5f9; --ink:#151a26; --muted:#5b6475; --line:#dadfe8; --brand:#3554d1; --deep:#1a2a78; --mint:#eef1ff; --soft:#b3bdf0; --edge:#5468c4; --surface:#fff; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#0f1219; --ink:#e8ecf4; --muted:#9aa3b6; --line:#2a3040; --brand:#8fa5ff; --surface:#171b25; } }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  a { color:var(--brand); }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
-  header { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
-  header b { display:flex; align-items:center; gap:10px; font-size:18px; }
-  nav a { margin-left:18px; text-decoration:none; }
-  .hero { background:var(--deep); color:var(--mint); border-radius:22px; padding:44px 36px 36px; margin-top:6px; position:relative; overflow:hidden; }
-  .hero h1 { font-size: clamp(32px, 6vw, 54px); line-height:1.05; letter-spacing:-0.03em; margin:0 0 14px; max-width:14ch; }
-  .hero p { max-width:52ch; margin:0 0 26px; color:var(--soft); }
-  .hero svg { position:absolute; right:-10px; top:18px; width:46%; max-width:420px; opacity:.9; }
-  .dl { display:flex; flex-wrap:wrap; gap:12px; }
-  .dl a { background:var(--mint); color:var(--deep); text-decoration:none; font-weight:650; padding:12px 18px; border-radius:11px; }
-  .dl a.ghost { background:none; color:var(--mint); border:1px solid var(--edge); }
-  .hero small { display:block; margin-top:14px; color:var(--soft); }
-  h2 { font-size:26px; letter-spacing:-0.02em; margin:54px 0 8px; }
-  .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
-  .two div { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px; }
-  .two h3 { margin:0 0 6px; font-size:19px; }
-  .two p { margin:0; color:var(--muted); }
-  dl.facts { display:grid; grid-template-columns: 190px 1fr; gap:0; margin:16px 0 0; border-top:1px solid var(--line); }
-  dl.facts dt, dl.facts dd { padding:12px 0; border-bottom:1px solid var(--line); margin:0; }
-  dl.facts dt { font-weight:650; }
-  dl.facts dd { color:var(--muted); }
-  .note { color:var(--muted); max-width:62ch; }
-  footer { margin:60px 0 40px; color:var(--muted); font-size:15px; display:flex; flex-wrap:wrap; gap:8px 20px; }
-  @media (max-width:640px) { .two { grid-template-columns:1fr; } dl.facts { grid-template-columns:1fr; } dl.facts dt { border-bottom:0; padding-bottom:0; } .hero { padding:32px 22px 26px; } .hero svg { display:none; } }
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <b><img src="icon.svg" width="30" height="30" alt="">HappyWiggle</b>
-    <nav><a href="privacy.html">Privacy</a><a href="https://github.com/HappyWiggleApp/HappyWiggle">Source code</a><a href="https://ko-fi.com/happywiggleapp">Buy me a coffee</a></nav>
+  <header class="site-head">
+    <a class="logo" href="./"><img src="icon.svg" width="32" height="32" alt="">HappyWiggle</a>
+    <nav>
+      <a href="./#modes">How it works</a>
+      <a href="./#features">Features</a>
+      <a href="faq.html">Questions</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/HappyWiggleApp/HappyWiggle">Source code</a>
+      <a class="coffee" href="https://ko-fi.com/happywiggleapp">Buy me a coffee</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <svg viewBox="0 0 240 120" aria-hidden="true"><path d="M10 80 C 45 10, 80 110, 120 60 S 190 14, 230 70" fill="none" stroke="#b3bdf0" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/><path transform="translate(118 56) scale(1.5)" d="M0 0 L0 17 L4.600 12.800 L7.500 19.500 L10.400 18.200 L7.600 11.700 L13.500 11.700 Z" fill="#fff"/></svg>
-    <h1>Keeps your computer awake. Then gets out of your way.</h1>
-    <p>A mouse wiggler and auto clicker for Windows and Mac. Free, open source, and it never goes online.</p>
-    <div class="dl">
-      <a href="https://github.com/HappyWiggleApp/HappyWiggle/releases/latest">Download for Windows</a>
-      <a href="https://github.com/HappyWiggleApp/HappyWiggle/releases/latest">Download for Mac</a>
-      <a class="ghost" href="https://github.com/HappyWiggleApp/HappyWiggle">Read the code</a>
+  <main>
+  <div class="hero">
+    <div class="hero-copy">
+      <h1>Keeps your computer awake. Then gets out of your way.</h1>
+      <p class="sub">A mouse wiggler and auto clicker in one small app. Free, open source, and it never goes online.</p>
+      <div class="buttons">
+        <a class="btn light" href="https://github.com/HappyWiggleApp/HappyWiggle/releases">Download for Windows<small>Windows 10 or later, 64-bit</small></a>
+        <a class="btn light" href="https://github.com/HappyWiggleApp/HappyWiggle/releases">Download for Mac<small>macOS 11 or later, Intel and Apple Silicon</small></a>
+        <a class="btn ghost" href="https://github.com/HappyWiggleApp/HappyWiggle">Read the code</a>
+      </div>
+      <p class="note">Windows is tested. The Mac version is an early preview. Downloads are on the project's GitHub releases page.</p>
     </div>
-    <small>Windows 10 or later. macOS 11 or later, Intel and Apple Silicon.</small>
-  </section>
-
-  <h2>Two ways to stay active</h2>
-  <div class="two">
-    <div><h3>Wiggle only</h3><p>Moves the mouse in a short, natural drift and brings it back where it was. Or pick the invisible one-pixel nudge. It never clicks.</p></div>
-    <div><h3>Click areas</h3><p>Choose an exact spot, or draw an area and let it click a random point inside, at random intervals. Up to five targets.</p></div>
+    <div class="shot">
+      <div class="bar"><i></i><i></i><i></i><span>HappyWiggle</span></div>
+      <img src="img/run-wiggling.png" width="880" height="1280" alt="HappyWiggle running in Wiggle mode: a dark blue panel shows the running time, the number of wiggles and the seconds until the next one.">
+    </div>
   </div>
 
-  <h2>What you get</h2>
-  <dl class="facts">
-    <dt>Steps aside</dt><dd>Touch the mouse and it waits. It carries on a few seconds after you stop.</dd>
-    <dt>Stops itself</dt><dd>After a number of clicks, after a number of minutes, or at a time of day.</dd>
-    <dt>Timetable</dt><dd>Pick days and hours once. Start, stop and lunch break drift by a few minutes each day.</dd>
-    <dt>One hotkey</dt><dd>F8 starts and stops it from anywhere. You can change the key.</dd>
-    <dt>Compact bar</dt><dd>A slim bar that stays on top and shows the time left and when it will stop.</dd>
-    <dt>Careful clicks</dt><dd>It glides to the target, clicks only if it really got there, and puts the pointer back.</dd>
-    <dt>Five languages</dt><dd>English, French, German, Spanish and Portuguese, in light or dark.</dd>
-  </dl>
+  <section>
+    <h2>What is HappyWiggle?</h2>
+    <p class="lede">It moves your mouse a little, or clicks a harmless spot, every so often. That keeps the screen on, stops the computer going to sleep, and keeps your session from going idle while you read, watch, present or step away for a moment.</p>
+    <div class="facts-strip">
+      <div><b>Free</b><span>No ads, no account, no paid tier.</span></div>
+      <div><b>Open source</b><span>Every line is public on GitHub.</span></div>
+      <div><b>Offline</b><span>It contains no network code at all.</span></div>
+      <div><b>Five languages</b><span>English, French, German, Spanish, Portuguese.</span></div>
+    </div>
+  </section>
 
-  <h2>Why open source matters here</h2>
-  <p class="note">An app that moves your mouse deserves scrutiny. Every line of HappyWiggle is public, the installers are built by a public script from that code, and the app contains no network code at all. It cannot read your screen, your files or your messages, and it has nothing to send them with.</p>
+  <section id="modes">
+    <h2>Two ways to stay active</h2>
+    <p class="lede">Pick one on the main screen. You can switch whenever a session is not running.</p>
+    <div class="duo">
+      <div class="mode">
+        <h3>Wiggle only</h3>
+        <p>Moves the pointer in a short, curved drift and brings it back exactly where it was. It never clicks, so nothing on screen can be changed by accident.</p>
+        <ul>
+          <li>Nothing to set up: press Start.</li>
+          <li>Prefer not to see it? Choose the invisible one-pixel nudge.</li>
+        </ul>
+        <img src="img/run-wiggling.png" width="880" height="1280" alt="Wiggle mode running.">
+      </div>
+      <div class="mode">
+        <h3>Click areas</h3>
+        <p>Choose an exact spot, or draw a box and let it click a random point inside. Useful for apps that only count a click as activity.</p>
+        <ul>
+          <li>Up to five targets, at random or in turn.</li>
+          <li>It glides there like a hand, then puts the pointer back.</li>
+        </ul>
+        <img src="img/run-clicking.png" width="880" height="1400" alt="Click mode running with one target area and 1 hour 29 minutes left.">
+      </div>
+    </div>
+  </section>
 
-  <h2>Use it responsibly</h2>
-  <p class="note">HappyWiggle is a tool you control. Check your employer's and IT policies before using automation on a work or managed device, and do not use it to misrepresent whether you are working.</p>
+  <section>
+    <h2>Three steps, then forget about it</h2>
+    <ol class="steps">
+      <li><h3>Choose a mode</h3><p>Wiggle only, or Click areas. For clicks, draw a box over somewhere harmless: an empty part of a window where a click sends, submits and changes nothing.</p></li>
+      <li><h3>Say how often and when to stop</h3><p>Often, Normal or Rarely. Stop when you say so, after a number of clicks, after a number of minutes, or at a time of day.</p></li>
+      <li><h3>Press Start</h3><p>Or press F8 from anywhere. Touch the mouse and it waits for you. Press F8 again and it stops.</p></li>
+    </ol>
+  </section>
+
+  <section id="features">
+    <h2>What you get</h2>
+    <div class="features">
+      <div><h3>It steps aside</h3><p>Touch the mouse and it waits, then carries on a few seconds after you stop. It never fights you for the pointer. On Windows it notices typing too.</p></div>
+      <div><h3>It stops itself</h3><p>After a number of clicks or wiggles, after a number of minutes, or at a clock time. The screen shows how long is left and when it will stop.</p></div>
+      <div><h3>One key, anywhere</h3><p>F8 starts and stops it whatever window is in front. You can change the key.</p></div>
+      <div><h3>Random, not robotic</h3><p>Every interval is picked at random inside the range you choose, and every click lands on a different point in your area.</p></div>
+      <div><h3>Careful clicks</h3><p>Before clicking it checks the pointer really reached the target. If it did not, it skips the click. It never clicks somewhere you did not choose.</p></div>
+      <div><h3>Keeps the computer awake</h3><p>Screen on and sleep off while a session runs. The moment it ends, your normal power settings are back.</p></div>
+      <div><h3>Lives in the tray</h3><p>Close the window and it stays in the tray or menu bar. Start, pause and stop from there.</p></div>
+      <div><h3>Starts with the computer</h3><p>Optional. Switch it on and the timetable works without you thinking about it.</p></div>
+      <div><h3>Simple first</h3><p>Three choices to get going. Exact seconds, movement style and distance sit behind "Advanced options" for those who want them.</p></div>
+    </div>
+  </section>
+
+  <section id="timetable">
+    <div class="split">
+      <div>
+        <h2>Set a timetable once</h2>
+        <p class="lede">Pick the days and hours. HappyWiggle starts and stops itself.</p>
+        <ul>
+          <li>One click sets up "Weekdays, 9 to 5" with a lunch break.</li>
+          <li>Start, stop and break each drift by a few minutes, differently every day.</li>
+          <li>"Skip today" for a day off. Stop it by hand and it stays off until the next block.</li>
+          <li>A history shows what actually happened: when it ran, and when it waited because you were at the mouse or the computer was asleep.</li>
+        </ul>
+        <p class="caption">It cannot wake a sleeping computer or get past a locked screen. If that happens mid-day, it carries on when you are back.</p>
+      </div>
+      <img src="img/schedule.png" width="880" height="1520" alt="The Schedule tab: a week view with blue bars from about 9 to 5 on weekdays, a gap at lunch, and the block editor below.">
+    </div>
+  </section>
+
+  <section>
+    <div class="split flip">
+      <div class="stack">
+        <img src="img/bar-running.png" width="800" height="128" alt="The compact bar while running: time, Runs until you stop it, wiggle count, pause, stop and expand buttons.">
+        <img src="img/bar-waiting.png" width="800" height="128" alt="The compact bar in amber: waiting for you to let go of the mouse.">
+      </div>
+      <div>
+        <h2>A small bar, if you prefer</h2>
+        <p class="lede">Shrink the window to a slim bar that stays on top. One glance tells you how long is left and what time it stops.</p>
+        <ul>
+          <li>Pause, stop and expand are right there.</li>
+          <li>It turns amber while it waits for you to let go of the mouse.</li>
+          <li>Light and dark themes follow your computer, or choose one.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="trust">
+      <div>
+        <h2>Private, and you can check</h2>
+        <p class="lede">An app that moves your mouse deserves scrutiny. So everything is in the open.</p>
+        <p class="caption">The installers are built by a public script from the public code, on GitHub's machines. Anyone can read the code, and anyone can rebuild it.</p>
+      </div>
+      <ul class="checks">
+        <li>Runs entirely on your computer</li>
+        <li>No account, no sign-in</li>
+        <li>No analytics, no crash reports, no update pings</li>
+        <li>Does not read your screen, files, keystrokes or messages</li>
+        <li>Knows only the coordinates you gave it, not what is under them</li>
+        <li>On Mac, one permission: to control the pointer</li>
+        <li>Stop at any time with F8</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it compares</h2>
+    <p class="lede">There are several ways to keep a computer active. They do different things.</p>
+    <div class="table-scroll">
+    <table class="compare">
+      <thead><tr><th></th><th>What it does</th><th>Worth knowing</th></tr></thead>
+      <tbody>
+        <tr><td>HappyWiggle</td><td>Real mouse movement or clicks, on a schedule you control, plus keep-awake.</td><td>Free and open source. Pauses when you use the computer.</td></tr>
+        <tr><td>Keep-awake tools</td><td>Stop the screen and computer from sleeping.</td><td>They send no input, so apps that watch for activity still see you as idle.</td></tr>
+        <tr><td>USB mouse jigglers</td><td>A gadget that pretends to be a mouse.</td><td>Costs money, has no schedule or stop rule, and cannot tell when you are back.</td></tr>
+        <tr><td>Jiggler websites</td><td>A web page that animates something.</td><td>A browser page cannot create real mouse input, so most of them do nothing useful.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <div class="faq">
+      <details><summary>Is it really free?</summary><div><p>Yes. No ads, no paid version, no account. If it is useful to you, you can <a href="https://ko-fi.com/happywiggleapp">buy me a coffee</a>, and that is entirely optional.</p></div></details>
+      <details><summary>Windows shows a security warning when I install it. Why?</summary><div><p>Windows warns about any new program it has not seen many times before. Click "More info", then "Run anyway". The warning does not appear for versions installed from the Microsoft Store.</p></div></details>
+      <details><summary>Will it keep my status active in Teams or Slack?</summary><div><p>HappyWiggle sends real mouse input, which is what a computer uses to decide you are there. Whether a particular chat app keeps showing you as active also depends on that app and on your organisation's settings, and we have not tested every one. Try Wiggle mode first; if an app only reacts to clicks, use Click areas on a harmless spot.</p></div></details>
+      <details><summary>Can it click something by accident?</summary><div><p>Wiggle mode never clicks. Click mode clicks only inside the areas you chose, and only after checking the pointer arrived there. Choose a spot where a click does nothing: an empty margin, not a button or a message list.</p></div></details>
+    </div>
+    <p class="caption"><a href="faq.html">All questions and answers</a></p>
+  </section>
+
+  <section>
+    <div class="notice">
+      <h2>Use it responsibly</h2>
+      <p>HappyWiggle is a tool you control. Check your employer's and IT policies before using any automation on a work or managed device, and do not use it to misrepresent whether you are working.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="coffee-box">
+      <div>
+        <h2>Free for everyone, and it stays that way</h2>
+        <p>No subscription, no nag screen, no upsell. If HappyWiggle saved you some trouble, a coffee keeps new versions coming.</p>
+      </div>
+      <div class="buttons" style="margin-top:0">
+        <a class="btn light" href="https://ko-fi.com/happywiggleapp">Buy me a coffee</a>
+        <a class="btn ghost" href="https://github.com/HappyWiggleApp/HappyWiggle/releases">Download instead</a>
+      </div>
+    </div>
+  </section>
+  </main>
 
   <footer>
-    <span>Made by Geordy</span><a href="https://ko-fi.com/happywiggleapp">Support on Ko-fi</a><span>MIT licence</span><a href="privacy.html">Privacy policy</a>
-    <a href="https://github.com/HappyWiggleApp/HappyWiggle/issues">Report a problem</a>
-    <span>Not affiliated with Microsoft, Apple, Slack or any other company.</span>
+    <div class="foot-links">
+      <a href="./">Home</a><a href="faq.html">Questions</a><a href="privacy.html">Privacy policy</a>
+      <a href="https://github.com/HappyWiggleApp/HappyWiggle">Source code</a><a href="https://github.com/HappyWiggleApp/HappyWiggle/issues">Report a problem</a><a href="https://ko-fi.com/happywiggleapp">Support on Ko-fi</a>
+    </div>
+    <p>Made by Geordy. Free and open source under the MIT licence.</p>
+    <p>HappyWiggle is an independent project. It is not affiliated with, endorsed by or sponsored by Microsoft, Apple, Slack, Zoom or any other company named on this site.</p>
+    <p>Use it responsibly. Check your employer's and IT policies before using automation on a work or managed device, and do not use it to misrepresent whether you are working.</p>
   </footer>
 </div>
 </body>

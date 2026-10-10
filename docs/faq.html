@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questions and answers: HappyWiggle</title>
+<meta name="description" content="How HappyWiggle works, installing on Windows and Mac, chat apps, safety and privacy.">
+<meta property="og:title" content="Questions and answers: HappyWiggle">
+<meta property="og:description" content="How HappyWiggle works, installing on Windows and Mac, chat apps, safety and privacy.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://happywiggleapp.github.io/HappyWiggle/img/social.png">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-head">
+    <a class="logo" href="./"><img src="icon.svg" width="32" height="32" alt="">HappyWiggle</a>
+    <nav>
+      <a href="./#modes">How it works</a>
+      <a href="./#features">Features</a>
+      <a href="faq.html" aria-current="page">Questions</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/HappyWiggleApp/HappyWiggle">Source code</a>
+      <a class="coffee" href="https://ko-fi.com/happywiggleapp">Buy me a coffee</a>
+    </nav>
+  </header>
+  <main>
+  <div class="page-title"><h1>Questions and answers</h1><p class="lede">How HappyWiggle works, what it does and does not do, and what to try when something is unclear.</p></div>
+  <div class="faq-group">
+    <h2>Getting started</h2>
+    <div class="faq">
+      <details><summary>What is HappyWiggle?</summary><div><p>A small free app for Windows and Mac that keeps your computer awake and your session active. It either moves the mouse a little (Wiggle only) or clicks a spot or area you choose (Click areas), at random intervals.</p></div></details>
+      <details><summary>Where do I download it?</summary><div><p>From the <a href="https://github.com/HappyWiggleApp/HappyWiggle/releases">releases page on GitHub</a>. Take the file ending in <strong>.exe</strong> for Windows or <strong>.dmg</strong> for Mac.</p></div></details>
+      <details><summary>Windows shows a security warning when I install it. Why?</summary><div><p>Windows SmartScreen warns about any new program that has not yet been downloaded by many people. Click "More info", then "Run anyway". Versions installed from the Microsoft Store do not show the warning.</p></div></details>
+      <details><summary>My Mac says the app cannot be opened, or is damaged.</summary><div><p>The direct download is not yet signed with an Apple certificate. Right-click the app and choose Open, then confirm. The Mac version is an early preview; please report what you find.</p></div></details>
+      <details><summary>Why does the Mac version ask for a permission?</summary><div><p>macOS requires your approval before any app may move the pointer or click. HappyWiggle asks once. Allow it under System Settings, Privacy & Security, Accessibility, then press Start again. If it still asks, quit HappyWiggle and open it again.</p></div></details>
+      <details><summary>Is there a Linux version?</summary><div><p>The code builds on Linux and works under X11, but it is not offered as a supported download. Wayland does not let ordinary apps move the pointer.</p></div></details>
+    </div>
+  </div>
+  <div class="faq-group">
+    <h2>Using it</h2>
+    <div class="faq">
+      <details><summary>Which mode should I use?</summary><div><p>Start with Wiggle only: it needs no setup and cannot click anything. Use Click areas only if something you rely on reacts to clicks and not to movement.</p></div></details>
+      <details><summary>Where should I put a click area?</summary><div><p>Somewhere a click does nothing: an empty margin of a window, a blank part of the desktop. Not on a button, a link, a message list or a text box.</p></div></details>
+      <details><summary>Can it click something by accident?</summary><div><p>Wiggle mode never clicks. Click mode clicks only inside your areas, and only after checking that the pointer really arrived there. If the pointer could not reach the target, for example because a monitor was unplugged, the click is skipped.</p></div></details>
+      <details><summary>What happens when I come back to my desk?</summary><div><p>Touch the mouse and it waits; the panel turns amber. It carries on a few seconds after you stop, and you can change that delay. On Windows it also notices typing.</p></div></details>
+      <details><summary>How do I stop it quickly?</summary><div><p>Press F8 from anywhere, whatever window is in front. You can also use the Stop button, the compact bar or the tray menu. The key can be changed in Settings.</p></div></details>
+      <details><summary>What do Often, Normal and Rarely mean?</summary><div><p>Often is every 5 to 15 seconds, Normal every 20 to 50 seconds, Rarely every 1 to 3 minutes. The exact moment is random each time. Under Advanced options you can type your own range.</p></div></details>
+      <details><summary>Can it run on a schedule?</summary><div><p>Yes. On the Schedule tab pick days and hours, or use the "Weekdays, 9 to 5" preset. Start, stop and lunch break drift by a few minutes each day. HappyWiggle has to be running for this, so switch on "Open when the computer starts".</p></div></details>
+      <details><summary>Does it work when the computer is asleep or the screen is locked?</summary><div><p>No. No app can move the mouse on a sleeping computer or behind a lock screen. While a session runs HappyWiggle keeps the computer awake, and if it does sleep or lock, the session carries on when you are back.</p></div></details>
+      <details><summary>I closed the window. Is it still running?</summary><div><p>Yes. Closing the window keeps HappyWiggle in the tray (Windows) or menu bar (Mac), where the hotkey and timetable keep working. To close it completely, choose Quit from the tray menu or from Settings.</p></div></details>
+    </div>
+  </div>
+  <div class="faq-group">
+    <h2>Chat apps and presence</h2>
+    <div class="faq">
+      <details><summary>Will it keep my status active in Teams, Slack or similar apps?</summary><div><p>HappyWiggle sends real mouse input, which is what the computer uses to decide you are there, and many apps take their cue from that. Whether a particular app keeps showing you as active also depends on the app and on your organisation's settings. We have not tested every app, so try it and see.</p></div></details>
+      <details><summary>Movement alone does not keep one of my apps active. What now?</summary><div><p>Some apps only count activity inside their own window. Switch to Click areas and place a small area on a harmless part of that app's window.</p></div></details>
+      <details><summary>Do keep-awake tools do the same thing?</summary><div><p>No. Tools that only prevent sleep send no input, so an app that watches for activity still sees you as idle. HappyWiggle does both.</p></div></details>
+      <details><summary>Is it allowed at my workplace?</summary><div><p>That depends on your workplace. Check your employer's and IT policies before using automation on a work or managed device, and do not use it to misrepresent whether you are working.</p></div></details>
+    </div>
+  </div>
+  <div class="faq-group">
+    <h2>Safety and privacy</h2>
+    <div class="faq">
+      <details><summary>Is it safe?</summary><div><p>It only moves the pointer and clicks where you told it to. It does not read your screen, files, keystrokes or messages. You do not have to take that on trust: <a href="https://github.com/HappyWiggleApp/HappyWiggle">all the code is public</a>, and the installers are built from it by a public script.</p></div></details>
+      <details><summary>Does it send any data about me?</summary><div><p>No. The app contains no network code: no analytics, no crash reports, no update checks. See the <a href="privacy.html">privacy policy</a>.</p></div></details>
+      <details><summary>What does it store on my computer?</summary><div><p>Three small files: your settings, a list of past sessions kept for 35 days, and one random number used to vary the timetable. Uninstalling removes them.</p></div></details>
+      <details><summary>Will my antivirus complain?</summary><div><p>Tools that simulate mouse input are sometimes flagged by cautious security software, and new unsigned programs more so. If yours objects, you can inspect the code, build it yourself, or use the store version when it is available.</p></div></details>
+    </div>
+  </div>
+  <div class="faq-group">
+    <h2>The project</h2>
+    <div class="faq">
+      <details><summary>Is it really free?</summary><div><p>Yes. No ads, no paid tier, no account. Donations through <a href="https://ko-fi.com/happywiggleapp">Ko-fi</a> are welcome and entirely optional.</p></div></details>
+      <details><summary>Who makes it?</summary><div><p>HappyWiggle is an independent project by Geordy, released under the MIT licence. The code was written with Claude, Anthropic's AI model.</p></div></details>
+      <details><summary>I found a problem, or I have an idea.</summary><div><p>Please <a href="https://github.com/HappyWiggleApp/HappyWiggle/issues">open an issue on GitHub</a>. Say which system you use and what you expected to happen.</p></div></details>
+      <details><summary>Can I help translate it?</summary><div><p>Yes. Each language is one block of text in a single file. Open an issue or a pull request on <a href="https://github.com/HappyWiggleApp/HappyWiggle">GitHub</a>.</p></div></details>
+    </div>
+  </div>
+  <section>
+    <div class="coffee-box">
+      <div><h2>Still stuck?</h2><p>Tell us what you see. A short description and a screenshot are usually enough.</p></div>
+      <div class="buttons" style="margin-top:0"><a class="btn light" href="https://github.com/HappyWiggleApp/HappyWiggle/issues">Report a problem</a><a class="btn ghost" href="https://github.com/HappyWiggleApp/HappyWiggle/releases">Download</a></div>
+    </div>
+  </section>
+  </main>
+  <footer>
+    <div class="foot-links">
+      <a href="./">Home</a><a href="faq.html">Questions</a><a href="privacy.html">Privacy policy</a>
+      <a href="https://github.com/HappyWiggleApp/HappyWiggle">Source code</a><a href="https://github.com/HappyWiggleApp/HappyWiggle/issues">Report a problem</a><a href="https://ko-fi.com/happywiggleapp">Support on Ko-fi</a>
+    </div>
+    <p>Made by Geordy. Free and open source under the MIT licence.</p>
+    <p>HappyWiggle is an independent project. It is not affiliated with, endorsed by or sponsored by Microsoft, Apple, Slack, Zoom or any other company named on this site.</p>
+    <p>Use it responsibly. Check your employer's and IT policies before using automation on a work or managed device, and do not use it to misrepresent whether you are working.</p>
+  </footer>
+</div>
+</body>
+</html>

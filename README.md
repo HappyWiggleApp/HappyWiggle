@@ -3,6 +3,10 @@
 A free, open-source mouse wiggler and auto clicker for Windows and macOS.
 No ads, no account, no tracking, no network access.
 
+<img src="docs/img/run-wiggling.png" width="340" alt="HappyWiggle running in Wiggle mode">
+
+Website: https://happywiggleapp.github.io/HappyWiggle/
+
 It keeps your computer awake and your session active in one of two ways:
 
 - **Wiggle only**: moves the mouse in a short, natural-looking drift (or an invisible one-pixel nudge). Never clicks.

@@ -56,6 +56,11 @@ with sync_playwright() as p:
     assert "1:29" in pg.inner_text("#st-clock")
     pg.click("#btn-pause"); pg.wait_for_timeout(300); assert pg.get_attribute("#stage", "data-phase") == "paused"
     pg.click("#btn-stop")
+    # switching mode and drawing straight away must not lose the mode
+    p2 = page(); p2.click('[data-mode="click"]'); p2.click("#btn-draw")
+    p2.mouse.move(120, 300); p2.mouse.down(); p2.mouse.move(300, 400, steps=3); p2.mouse.up(); p2.wait_for_timeout(700)
+    assert p2.get_attribute('.segmented [data-mode="click"]', "aria-checked") == "true", "mode was lost while drawing"
+    assert p2.locator("#targets li").count() == 1
     # schedule
     pg.click('[data-tab="schedule"]'); pg.screenshot(path=str(out / "08-schedule-empty.png"))
     pg.click("#btn-preset"); pg.wait_for_timeout(600)

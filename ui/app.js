@@ -275,7 +275,8 @@
 
   async function draw(index) {
     if (index == null && S.areas.length >= 5) return notice('err.targets-full');
-    try { await invoke('pick_area', { index: index == null ? null : index }); } catch (e) { problem(e); }
+    // a change made a moment ago (such as switching to Click mode) must be saved first
+    try { await flush(); await invoke('pick_area', { index: index == null ? null : index }); } catch (e) { problem(e); }
   }
   $('btn-draw').onclick = () => draw(null);
 
