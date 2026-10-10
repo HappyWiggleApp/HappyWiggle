@@ -178,6 +178,7 @@
     set_tray_labels: () => {},
     open_link: () => {},
     open_startup_settings: () => {},
+    ui_ready: () => {},
     quit: () => {},
   };
 

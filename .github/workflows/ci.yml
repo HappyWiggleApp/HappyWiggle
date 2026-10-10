@@ -55,6 +55,41 @@ jobs:
       - run: npm ci
       - name: Build installers
         run: npx tauri build ${{ matrix.args }}
+      # Start the real app on this machine and wait for its window to report
+      # that the interface loaded. Catches "it builds but the window is empty".
+      - name: Start-up test (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $env:HAPPYWIGGLE_SELFTEST = Join-Path $env:RUNNER_TEMP "selftest"
+          $app = Start-Process -FilePath "target\release\happywiggle.exe" -PassThru
+          $ok = $false
+          foreach ($i in 1..60) {
+            if (Test-Path (Join-Path $env:HAPPYWIGGLE_SELFTEST "main.txt")) { $ok = $true; break }
+            Start-Sleep -Seconds 1
+          }
+          if (-not $app.HasExited) { Stop-Process -Id $app.Id -Force }
+          if (-not $ok) { throw "The main window never finished loading its interface." }
+          Write-Host "The main window loaded its interface."
+      - name: Start-up test (macOS and Linux)
+        if: matrix.os != 'windows-latest'
+        shell: bash
+        run: |
+          export HAPPYWIGGLE_SELFTEST="$RUNNER_TEMP/selftest"
+          if [ "${{ matrix.os }}" = "macos-latest" ]; then
+            target/universal-apple-darwin/release/happywiggle &
+          else
+            sudo apt-get install -y xvfb dbus-x11 >/dev/null
+            dbus-run-session -- xvfb-run -a target/release/happywiggle &
+          fi
+          ok=no
+          for i in $(seq 1 60); do
+            if [ -f "$HAPPYWIGGLE_SELFTEST/main.txt" ]; then ok=yes; break; fi
+            sleep 1
+          done
+          pkill -x happywiggle || true
+          if [ "$ok" != yes ]; then echo "The main window never finished loading its interface."; exit 1; fi
+          echo "The main window loaded its interface."
       # The store variants contain a little code of their own: make sure it compiles too.
       - name: Check the Microsoft Store variant
         if: matrix.os == 'windows-latest'

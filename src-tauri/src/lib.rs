@@ -433,6 +433,21 @@ fn open_startup_settings(app: AppHandle) -> Result<(), String> {
     startup::open_system_settings(&app)
 }
 
+/// Called by a window once its interface has finished loading.
+///
+/// Normally does nothing. The automated start-up test sets the
+/// HAPPYWIGGLE_SELFTEST variable to a folder; the app then leaves a small file
+/// there per window, which proves on a real Windows, macOS or Linux machine
+/// that the window came up with its content.
+#[tauri::command]
+fn ui_ready(window: WebviewWindow) {
+    if let Some(dir) = std::env::var_os("HAPPYWIGGLE_SELFTEST") {
+        let dir = std::path::PathBuf::from(dir);
+        let _ = std::fs::create_dir_all(&dir);
+        let _ = std::fs::write(dir.join(format!("{}.txt", window.label())), "ready");
+    }
+}
+
 #[tauri::command]
 fn quit(app: AppHandle) {
     app.exit(0);
@@ -494,6 +509,7 @@ pub fn run() {
             set_tray_labels,
             open_link,
             open_startup_settings,
+            ui_ready,
             quit
         ])
         .setup(|app| {

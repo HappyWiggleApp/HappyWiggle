@@ -577,6 +577,7 @@
   applyTheme();
   applyLanguage();
   setInterval(() => { if (!$('tab-schedule').hidden && S.schedule.blocks.length) renderWeek(); }, 60000);
+  invoke('ui_ready').catch(() => {});
 
   if (API.preview) {
     $('preview-note').hidden = false;
