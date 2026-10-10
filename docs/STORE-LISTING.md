@@ -9,6 +9,10 @@ descriptions and reviewers react badly to them.
 
 HappyWiggle
 
+## Publisher display name
+
+Geordy
+
 ## Subtitle / short description (max 30 characters on Apple)
 
 Mouse wiggler and auto clicker

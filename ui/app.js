@@ -542,7 +542,7 @@
   }
   function applyLanguage() {
     I18N.setLanguage(S.language);
-    $('version').textContent = t('about.version', { v: INFO.version });
+    $('version').textContent = t('about.version', { v: INFO.version, author: 'Geordy' });
     invoke('set_tray_labels', { labels: {
       start: t('run.start'), stop: t('run.stop'), pause: t('run.pause'), resume: t('run.resume'),
       show: t('tray.show'), quit: t('tray.quit'), idle: t('tray.idle'), running: t('tray.running'), paused: t('tray.paused'), waiting: t('tray.waiting'),

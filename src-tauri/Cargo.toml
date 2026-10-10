@@ -3,6 +3,7 @@ name = "happywiggle"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
+authors = ["Geordy"]
 description = "Free, open-source mouse wiggler and auto clicker."
 rust-version = "1.90"
 

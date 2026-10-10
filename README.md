@@ -79,6 +79,10 @@ history of at most 35 days, and a random number used to vary the timetable).
 Nothing leaves the machine: the app has no network code, and the store builds
 do not even request the permission to go online. See [PRIVACY.md](PRIVACY.md).
 
+## Author
+
+Created by Geordy, who had the idea and directs the project. The code was written with Claude, Anthropic's AI model.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
