@@ -3,6 +3,7 @@
 // add an <option> to the language list in index.html.
 (function () {
   const en = {
+    'err.engine': 'The window could not reach the app\u2019s engine. Quit HappyWiggle from the tray and open it again. Details: {msg}',
     'often.label': 'How often', 'often.often': 'Often (every 5 to 15 seconds)', 'often.normal': 'Normal (every 20 to 50 seconds)',
     'often.rarely': 'Rarely (every 1 to 3 minutes)', 'often.custom': 'Custom (every {min} to {max} seconds)',
     'adv.show': 'Advanced options', 'adv.hint': 'Exact timing, movement style, what happens while it runs', 'adv.timing': 'Timing and movement',
@@ -130,6 +131,7 @@
   };
 
   const fr = {
+    'err.engine': 'La fenêtre n\u2019a pas pu joindre le moteur de l\u2019application. Quittez HappyWiggle depuis la zone de notification et rouvrez-le. Détails : {msg}',
     'often.label': 'Fréquence', 'often.often': 'Souvent (toutes les 5 à 15 secondes)', 'often.normal': 'Normal (toutes les 20 à 50 secondes)',
     'often.rarely': 'Rarement (toutes les 1 à 3 minutes)', 'often.custom': 'Personnalisé (toutes les {min} à {max} secondes)',
     'adv.show': 'Options avancées', 'adv.hint': 'Durées exactes, type de mouvement, comportement pendant qu’il tourne', 'adv.timing': 'Durées et mouvement',
@@ -247,6 +249,7 @@
   };
 
   const de = {
+    'err.engine': 'Das Fenster konnte den Kern der App nicht erreichen. Beenden Sie HappyWiggle über das Symbol im Infobereich und öffnen Sie es erneut. Details: {msg}',
     'often.label': 'Wie oft', 'often.often': 'Oft (alle 5 bis 15 Sekunden)', 'often.normal': 'Normal (alle 20 bis 50 Sekunden)',
     'often.rarely': 'Selten (alle 1 bis 3 Minuten)', 'often.custom': 'Eigene Werte (alle {min} bis {max} Sekunden)',
     'adv.show': 'Erweiterte Optionen', 'adv.hint': 'Genaue Zeiten, Art der Bewegung, Verhalten während es läuft', 'adv.timing': 'Zeiten und Bewegung',
@@ -364,6 +367,7 @@
   };
 
   const es = {
+    'err.engine': 'La ventana no pudo conectar con el motor de la aplicación. Sal de HappyWiggle desde la bandeja y ábrelo de nuevo. Detalles: {msg}',
     'often.label': 'Frecuencia', 'often.often': 'A menudo (cada 5 a 15 segundos)', 'often.normal': 'Normal (cada 20 a 50 segundos)',
     'often.rarely': 'Pocas veces (cada 1 a 3 minutos)', 'often.custom': 'Personalizado (cada {min} a {max} segundos)',
     'adv.show': 'Opciones avanzadas', 'adv.hint': 'Tiempos exactos, tipo de movimiento, comportamiento mientras funciona', 'adv.timing': 'Tiempos y movimiento',
@@ -481,6 +485,7 @@
   };
 
   const pt = {
+    'err.engine': 'A janela não conseguiu contactar o motor da aplicação. Saia do HappyWiggle pela área de notificação e abra-o de novo. Detalhes: {msg}',
     'often.label': 'Frequência', 'often.often': 'Muitas vezes (a cada 5 a 15 segundos)', 'often.normal': 'Normal (a cada 20 a 50 segundos)',
     'often.rarely': 'Raramente (a cada 1 a 3 minutos)', 'often.custom': 'Personalizado (a cada {min} a {max} segundos)',
     'adv.show': 'Opções avançadas', 'adv.hint': 'Tempos exatos, tipo de movimento, comportamento enquanto funciona', 'adv.timing': 'Tempos e movimento',

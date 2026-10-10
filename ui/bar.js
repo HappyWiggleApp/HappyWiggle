@@ -54,7 +54,11 @@ window.initBar = async function (root) {
   API.on('settings', (s) => { settings = s; I18N.setLanguage(s.language); applyTheme(s.theme); render(); });
   function applyTheme(theme) { const r = document.documentElement; if (theme === 'light' || theme === 'dark') r.dataset.theme = theme; else r.removeAttribute('data-theme'); }
 
-  const snap = await API.invoke('get_state');
+  let snap = null;
+  for (let attempt = 0; attempt < 40 && !snap; attempt += 1) {
+    try { snap = await API.invoke('get_state'); } catch (e) { await new Promise((r) => setTimeout(r, 150)); }
+  }
+  if (!snap) return;
   status = snap.status; settings = snap.settings;
   wasActive = status.phase !== 'idle';
   if (!document.getElementById('tab-run')) { I18N.setLanguage(settings.language); applyTheme(settings.theme); }

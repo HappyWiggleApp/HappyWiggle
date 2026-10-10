@@ -565,7 +565,17 @@
   });
   API.on('session-started', () => { if (S && S.compactOnStart) invoke('set_compact', { compact: true }); });
 
-  const snap = await invoke('get_state');
+  // Show the interface in the computer's language straight away, so the
+  // window is never blank even if the engine is slow to answer.
+  I18N.setLanguage('auto');
+  let snap = null;
+  for (let attempt = 0; attempt < 40 && !snap; attempt += 1) {
+    try { snap = await invoke('get_state'); }
+    catch (e) {
+      if (attempt === 39) { notice('err.engine', { msg: String(e) }); return; }
+      await new Promise((r) => setTimeout(r, 150));
+    }
+  }
   S = snap.settings; ST = snap.status; INFO = snap.info;
   $('row-autostart').hidden = INFO.autostart !== 'switch';
   $('row-startup-win').hidden = INFO.autostart !== 'windowsSettings';

@@ -20,7 +20,8 @@
         "resizable": true,
         "maximizable": false,
         "visible": false,
-        "center": true
+        "center": true,
+        "create": false
       },
       {
         "label": "bar",
@@ -33,7 +34,8 @@
         "skipTaskbar": true,
         "resizable": false,
         "maximizable": false,
-        "visible": false
+        "visible": false,
+        "create": false
       }
     ],
     "security": {

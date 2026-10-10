@@ -518,6 +518,15 @@ pub fn run() {
             app.manage(shared.clone());
             let handle = app.handle().clone();
 
+            // The windows are created here, by hand, and only now. Left to
+            // the framework they are created before this start-up code runs,
+            // and on Windows a page can then ask for its settings before the
+            // settings exist: the window comes up with no text in it.
+            let window_configs = app.config().app.windows.clone();
+            for cfg in &window_configs {
+                WebviewWindowBuilder::from_config(&handle, cfg)?.build()?;
+            }
+
             tray::build(app, &shared)?;
 
             // The user may have changed launch-at-login outside the app
