@@ -79,6 +79,10 @@ history of at most 35 days, and a random number used to vary the timetable).
 Nothing leaves the machine: the app has no network code, and the store builds
 do not even request the permission to go online. See [PRIVACY.md](PRIVACY.md).
 
+## Support
+
+HappyWiggle is free and stays free. If it saved you some trouble, you can [buy me a coffee on Ko-fi](https://ko-fi.com/happywiggleapp).
+
 ## Author
 
 Created by Geordy, who had the idea and directs the project. The code was written with Claude, Anthropic's AI model.
